@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Web.Models.Entities
 {
-    public class BaseEntity<TId>
+    public abstract class BaseEntity<TId>
     {
         [Key]
         public TId Id { get; set; }
+
+        public DateTime? UpdateDate { get; set; }
     }
 }

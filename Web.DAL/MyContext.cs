@@ -15,6 +15,6 @@ namespace Web.DAL
 
         }
 
-        public virtual DbSet<ArizaKayit> ArizaKayits { get; set; }
+        public virtual DbSet<TroubleRecord> ArizaKayits { get; set; }
     }
 }
