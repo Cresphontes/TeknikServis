@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+</head>
+<body>
+    <!-- Preloader Starts -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Preloader End -->
+    
+    <!-- ##### Hero Area Start ##### -->
+    <div  class="hero-area">
+        <div class="hero-slideshow owl-carousel">
+             
+            <!-- Single Slide -->
+            <div class="single-slide bg-img">
+                <!-- Background Image-->
+                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url(/Content/img/bg-img/esya1.jpg);"></div>
+                <!-- Welcome Text -->
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-center">
+                        <div class="col-12 col-lg-9">
+                            <div class="welcome-text text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">AB BEYAZ ESYA TAMIRI</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">BEYAZ <span>ESYANIZI GETIRIN TAMIR EDELIM</span> </h2>
+                                <p data-animation="fadeInUp" data-delay="500ms">AB GURURLA SUNAR</p>
+                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide Duration Indicator -->
+                <div class="slide-du-indicator"></div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide bg-img">
+                <!-- Background Image-->
+                <div class="slide-bg-img bg-img bg-overlay" style="background-image: url(/Content/img/bg-img/esya2.jpg);"></div>
+                <!-- Welcome Text -->
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-center">
+                        <div class="col-12 col-lg-9">
+                            <div class="welcome-text text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">AB BEYAZ ESYA TAMIRI</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">BEYAZ <span>ESYANIZI GETIRIN TAMIR EDELIM</span> </h2>
+                                <p data-animation="fadeInUp" data-delay="500ms">AB GURURLA SUNAR</p>
+                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInDown" data-delay="700ms">Discover</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide Duration Indicator -->
+                <div class="slide-du-indicator"></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ##### Hero Area End ##### -->
+   
+    <!-- ##### stil sayfasi baslangic ##### -->
+    <section style="height:750px" id="scroll" class="ftco-section ftco-product">
+        <div class="container">
+            <div class="row justify-content-center mb-3 pb-3">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h1 class="big">AB SERVICE</h1>
+                    <h2 class="mb-4">BEYAZ EŞYA TAMİRİ</h2>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-slider owl-carousel ftco-animate">
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod">
+                                    <img class="img-fluid" src="~/modist/images/bulasik.png" alt="Colorlib Template">
+                                </a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Bulaşık Makinesi Tamiri</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Buzdolabi.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Buzdolabı Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Camasir.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Camaşır Makinesi Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Ocak.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Ocak Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Davlumbaz.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Davlumbaz Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Firin.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Fırın Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product">
+                                <a href="@Url.Action("ArizaKayit","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Mikrodalga.png" alt="Colorlib Template"></a>
+                                <div style="text-align:center" class="text pt-3 px-3">
+                                    <h3><a href="@Url.Action("ArizaKayit","Home")">Mikrodalga Tamiri</a></h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### stil sayfasi bitis ##### -->
+</body>
+</html>
