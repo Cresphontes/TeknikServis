@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-         public ActionResult TroubleRecord()
+        public ActionResult TroubleRecord()
         {
             var db = new TroubleRecordRepo().GetAll();
 
@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
             }
 
             ViewBag.List = list;
-        
+
             return View();
         }
 
@@ -90,10 +90,17 @@ namespace WebApplication1.Controllers
                 throw;
             }
 
-           
 
 
 
+
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Contact()
+        {
 
             return View();
         }
