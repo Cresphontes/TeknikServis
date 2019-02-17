@@ -26,6 +26,15 @@ namespace Web.BLL.Repository
         {
             return DbObject.ToList();
         }
+        public List<T> GetAll(Func<T,bool> predicate)
+        {
+            return DbObject.Where(predicate).ToList();
+        }
+
+        public T GetById(params object[] keys)
+        {           
+            return DbObject.Find(keys);
+        }
 
         public int Insert(T entity)
         {

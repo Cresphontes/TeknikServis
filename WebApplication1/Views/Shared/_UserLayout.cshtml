@@ -4,18 +4,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Page Title -->
+
     <title>Comport</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
 
-    <!-- CSS Files -->
+
+    <link rel="shortcut icon" href="~/assets/images/logo/favicon.png" type="image/x-icon">
+
+
     <link rel="stylesheet" href="~/assets/css/animate-3.7.0.css">
     <link rel="stylesheet" href="~/assets/css/font-awesome-4.7.0.min.css">
     <link rel="stylesheet" href="~/assets/fonts/flat-icon/flaticon.css">
@@ -45,6 +45,14 @@
     <link rel="stylesheet" href="~/modist/css/flaticon.css">
     <link rel="stylesheet" href="~/modist/css/icomoon.css">
     <link rel="stylesheet" href="~/modist/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/quill/dist/quill.snow.css">
+    <link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
+
+    <script src="~/Admin/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -143,5 +151,75 @@
     <script src="~/modist/js/bootstrap-datepicker.js"></script>
     <script src="~/modist/js/scrollax.min.js"></script>
     <script src="~/modist/js/main.js"></script>
+
+
+    <script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Admin1/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Admin1/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Admin1/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Admin1/dist/js/custom.min.js"></script>
+    <!-- This Page JS -->
+    <script src="~/Admin1/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/Admin1/dist/js/pages/mask/mask.init.js"></script>
+    <script src="~/Admin1/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/Admin1/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="~/Admin1/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="~/Admin1/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="~/Admin1/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="~/Admin1/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="~/Admin1/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Admin1/assets/libs/quill/dist/quill.min.js"></script>
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+
+        /*colorpicker*/
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
+
+                change: function (value, opacity) {
+                    if (!value) return;
+                    if (opacity) value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
+
+        });
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+    </script>
+
 </body>
 </html>
