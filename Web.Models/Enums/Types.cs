@@ -8,6 +8,7 @@ namespace Web.Models.Enums
 {
     public enum Types
     {
+        
         buzdolabi,
         camasir,
         firin,
