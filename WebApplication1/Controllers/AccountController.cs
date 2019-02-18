@@ -7,20 +7,21 @@ using Web.Models.IdentityEntities;
 
 namespace WebApplication1.Controllers
 {
-    public class AcoountController : Controller
+    public class AccountController : BaseController
     {
 
         [HttpGet]
         // GET: UserRegister
         public ActionResult RegisterIndex()
         {
+            ViewBag.CountryList = CountryList();
             return View();
         }
 
         [HttpPost]
         public ActionResult RegisterIndex(User model)
         {
-
+            
            
             return View();
         }
