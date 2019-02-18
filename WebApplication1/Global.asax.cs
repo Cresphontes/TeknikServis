@@ -17,7 +17,7 @@ namespace WebApplication1
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var rolls = new string[] { "Admin,User" };
+            var rolls = new string[] { "Admin","User" };
 
             foreach (var role in rolls)
             {

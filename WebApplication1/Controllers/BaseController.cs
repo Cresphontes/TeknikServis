@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
 
             var list = new List<SelectListItem>()
             {
-                new SelectListItem{Text="---Select---"},
+                new SelectListItem{Text="---Select---",Value="null"},
                 new SelectListItem{Text="Türkiye",Value="TR"},
                 new SelectListItem { Text = "Almanya", Value = "ALM" },
                 new SelectListItem { Text = "İtalya", Value = "ITL" },
