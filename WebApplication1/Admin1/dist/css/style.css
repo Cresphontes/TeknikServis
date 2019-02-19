@@ -13180,12 +13180,12 @@ Earnings
   position: relative; }
   .auth-wrapper .auth-box {
     background: #fff;
-    padding: 20px;
+   
     -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
     box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
     max-width: 400px;
     width: 90%;
-    margin: 10% 0; }
+     }
     .auth-wrapper .auth-box .logo {
       text-align: center; }
     .auth-wrapper .auth-box.on-sidebar {
