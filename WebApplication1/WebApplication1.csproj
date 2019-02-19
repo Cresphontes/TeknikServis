@@ -1851,6 +1851,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Partials\" />
     <Folder Include="Views\UserRegister\" />
   </ItemGroup>
   <ItemGroup>

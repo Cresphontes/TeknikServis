@@ -43,14 +43,15 @@
 		<!-- ============================================================== -->
 		<!-- Login box.scss -->
 		<!-- ============================================================== -->
-		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-			<div class="auth-box bg-dark border-top border-secondary">
+		<div class="auth-wrapper d-flex no-block justify-content-center align-items-center ">
+			<div class="auth-box ">
 				<div id="loginform">
 					<div class="text-center p-t-20 p-b-20">
-						<span class="db"><img sizes="5x5" src="~/Admin1/assets/images/favicon.png" alt="logo" /></span>
+						<span class="db"><img sizes="5x5" src="~/assets/images/logo/favicon.png" alt="logo" /></span>
+						<h5>@Html.ValidationSummary()</h5>
 					</div>
 					<!-- Form -->
-					@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+					@using (Html.BeginForm("LoginIndex", "Account", FormMethod.Post))
 					{
 						<div class="form-group">
 							@Html.LabelFor(x => x.Username, new { @class = "sr-only" })
@@ -67,16 +68,15 @@
 								@Html.CheckBoxFor(x => x.RememberMe)<span>Beni Hatırla</span>
 							</label>
 						</div>
-						<div class="row border-top border-secondary">
+						<div class="row ">
 							<div class="col-12">
 								<div class="form-group">
 									<div class="p-t-20">
 										<button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Sifremi Unuttum?</button>
-										<a class="btn btn-cyan float-right" href="@Url.Action("Register","Account")">
+										<a  class="btn btn-cyan float-right" href="@Url.Action("Register","Account")">
 											Kayıt Ol
 										</a>
-										<button class="btn btn-success float-right" type="submit">Giris</button>
-
+										<button type="submit" class="btn btn-success float-right">Giris</button>
 									</div>
 								</div>
 							</div>
@@ -90,13 +90,14 @@
 					</div>
 					<div class="row m-t-20">
 						<!-- Form -->
+
 						@using (Html.BeginForm("Login", "Account", FormMethod.Post))
 						{
 							<div class="input-group-prepend">
 								<span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
 							</div>
 							<input type="text" class="form-control form-control-lg" placeholder="Email Address">
-							<div class="row m-t-20 p-t-20 border-top border-secondary">
+							<div class="row m-t-20 p-t-20 ">
 								<div class="col-12">
 									<a class="btn btn-success" href="#" id="to-login" name="action">Girise geri don</a>
 									<button class="btn btn-info float-right" type="button" name="action">Kurtar</button>

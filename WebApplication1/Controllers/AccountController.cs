@@ -112,13 +112,49 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> LoginIndex(LoginViewModel model)
         {
 
-            if (!ModelState.IsValid)
+            try
             {
-                return ("LoginIndex", model);
+                if (!ModelState.IsValid)
+                {
+                    return View("LoginIndex", model);
+                }
+
+                var userManager = NewUserManager();
+
+                var user = await userManager.FindAsync(model.Username, model.Password);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı.");
+                    return View("LoginIndex", model);
+                }
+
+                var authManager = HttpContext.GetOwinContext().Authentication;
+
+                var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                authManager.SignIn(userIdentity);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
 
-            return View();
+            return RedirectToAction("Index","Home");
+        }
+
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+
+            authManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            return RedirectToAction("LoginIndex", "Account");
+
         }
     }
 }
