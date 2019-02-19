@@ -20,6 +20,11 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult TroubleRecord()
         {

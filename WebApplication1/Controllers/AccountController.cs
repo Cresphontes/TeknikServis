@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Web.BLL.Identity;
 using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
@@ -96,8 +97,16 @@ namespace WebApplication1.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Looks Like You Are Lost In Space",
+                    ActionName = "Index",
+                    ControllerName = "Home",
+                    ErrorCode = 500
+                };
 
-                throw ex;
+                return RedirectToAction("Error", "Home");
+
             }
         }
 
@@ -133,13 +142,23 @@ namespace WebApplication1.Controllers
 
                 var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                authManager.SignIn(userIdentity);
+                authManager.SignIn(new AuthenticationProperties()
+                {
+                    IsPersistent = model.RememberMe
+
+                },userIdentity);
 
             }
             catch (Exception ex)
             {
-
-                throw;
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Looks Like You Are Lost In Space",
+                    ActionName = "Index",
+                    ControllerName = "Home",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
             }
 
 

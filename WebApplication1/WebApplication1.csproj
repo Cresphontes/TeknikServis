@@ -125,6 +125,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404-page\css\style.css" />
+    <Content Include="404-page\index.html" />
+    <Content Include="404-page\js\index.js" />
+    <Content Include="404-page\license.txt" />
+    <Content Include="404-page\README.txt" />
     <Content Include="Admin1\assets\extra-libs\calendar\calendar.css" />
     <Content Include="Admin1\assets\extra-libs\DataTables\DataTables-1.10.16\css\dataTables.bootstrap.css" />
     <Content Include="Admin1\assets\extra-libs\DataTables\DataTables-1.10.16\css\dataTables.bootstrap.min.css" />
@@ -1842,6 +1847,7 @@
     <Content Include="Views\Account\RegisterIndex.cshtml" />
     <Content Include="Views\Account\LoginIndex.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialProfile.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

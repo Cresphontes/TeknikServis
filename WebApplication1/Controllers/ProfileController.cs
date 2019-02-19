@@ -14,11 +14,26 @@ namespace WebApplication1.Controllers
         // GET: Profile
         public ActionResult ProfileIndex()
         {
+            
+
             var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            if (id != null)
+            {
+                User user = NewUserManager().FindById(id);
 
-            User user = NewUserManager().FindById(id);
+                return PartialView("Partials/_PartialProfile", user);
+            }
+            else
+            {
+                User defaultUser = new User()
+                {
+                    Name = "",
+                    Surname = ""
+                };
 
-            return PartialView("Partials/_PartialProfile",user);
+                return PartialView("Partials/_PartialProfile", defaultUser);
+            }
         }
     }
+           
 }
