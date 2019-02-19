@@ -100,5 +100,25 @@ namespace WebApplication1.Controllers
                 throw ex;
             }
         }
+
+        [HttpGet]
+        public ActionResult LoginIndex()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> LoginIndex(LoginViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return ("LoginIndex", model);
+            }
+
+
+            return View();
+        }
     }
 }

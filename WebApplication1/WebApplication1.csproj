@@ -1839,6 +1839,7 @@
     <Content Include="Views\Home\TroubleRecord.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Account\RegisterIndex.cshtml" />
+    <Content Include="Views\Account\LoginIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
