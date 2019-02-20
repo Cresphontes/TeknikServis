@@ -23,12 +23,10 @@
 </div>
 
 <div style="height:650px" class="container-fluid">
-
-
-	<div class="row">
-		<h5 style="margin-left:305px;padding-bottom:20px">@Html.ValidationSummary()</h5>
-		<h5 style="margin-left:305px;padding-bottom:20px">@TempData["Message"]</h5>
+	<div>
+		<span>@TempData["Message"]</span>
 	</div>
+
 	<div class="row">
 
 		<div class="col-md-6">
@@ -44,18 +42,21 @@
 							@Html.LabelFor(x => x.ProfileViewModel.UserName, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.ProfileViewModel.UserName, new { @class = "form-control", @placeholder = "Kullanıcı Adınızı Giriniz" })
+								@Html.ValidationMessageFor(x => x.ProfileViewModel.UserName, "", new { @class = "text-danger" })
 							</div>
 						</div>
 						<div class="form-group row">
 							@Html.LabelFor(x => x.ProfileViewModel.Email, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.ProfileViewModel.Email, new { @class = "form-control", @placeholder = "Email Adresinizi Giriniz", @type = "email" })
+								@Html.ValidationMessageFor(x => x.ProfileViewModel.Email, "", new { @class = "text-danger" })
 							</div>
 						</div>
 						<div class="form-group row">
 							@Html.LabelFor(x => x.ProfileViewModel.PhoneNumber, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.ProfileViewModel.PhoneNumber, new { @class = "form-control", @placeholder = "Telefon Numaranızı Giriniz" })
+								@Html.ValidationMessageFor(x => x.ProfileViewModel.PhoneNumber, "", new { @class = "text-danger" })
 							</div>
 						</div>
 						<div class="card-body">
@@ -78,18 +79,22 @@
 							@Html.LabelFor(x => x.PasswordViewModel.OldPassword, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.PasswordViewModel.OldPassword, new { @class = "form-control", @placeholder = "Şifrenizi  Giriniz", @type = "password" })
+								@Html.ValidationMessageFor(x => x.PasswordViewModel.OldPassword, "", new { @class = "text-danger" })
+								<span>@TempData["Password"]</span>
 							</div>
 						</div>
 						<div class="form-group row">
 							@Html.LabelFor(x => x.PasswordViewModel.NewPassword, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.PasswordViewModel.NewPassword, new { @class = "form-control", @placeholder = "Şifrenizi  Giriniz", @type = "password" })
+								@Html.ValidationMessageFor(x => x.PasswordViewModel.NewPassword, "", new { @class = "text-danger" })
 							</div>
 						</div>
 						<div class="form-group row">
 							@Html.LabelFor(x => x.PasswordViewModel.ConfirmNewPassword, new { @class = "col-sm-3 text-right control-label col-form-label" })
 							<div class="col-sm-9">
 								@Html.TextBoxFor(x => x.PasswordViewModel.ConfirmNewPassword, new { @class = "form-control", @placeholder = "Şifrenizi  Giriniz", @type = "password" })
+								@Html.ValidationMessageFor(x => x.PasswordViewModel.ConfirmNewPassword, "", new { @class = "text-danger" })
 							</div>
 						</div>
 

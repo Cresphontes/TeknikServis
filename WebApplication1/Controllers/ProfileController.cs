@@ -108,7 +108,7 @@ namespace WebApplication1.Controllers
             else
             {
                 ModelState.AddModelError("", "Bir Hata Oluştu");
-                return RedirectToAction("MyProfile", "Profile");
+                return View("MyProfile", user);
             }
 
 
@@ -116,14 +116,24 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult ChangePassword(UpdateProfilePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("MyProfile");
-            }
-
-
             var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
             User user = NewUserManager().FindById(id);
+
+            var newUser1 = new UpdateProfilePasswordViewModel()
+            {
+                ProfileViewModel = new ProfileViewModel()
+                {
+                     Email= user.Email,
+                      PhoneNumber= user.PhoneNumber,
+                       UserName= user.UserName
+                }
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return View("MyProfile", newUser1);
+            }
+
 
             var result = NewUserManager().ChangePassword(id, model.PasswordViewModel.OldPassword, model.PasswordViewModel.NewPassword);
 
@@ -135,9 +145,9 @@ namespace WebApplication1.Controllers
             }
             else
             {
-               
-                ModelState.AddModelError("","Eski şifreniz yanlıştır.");
-                return View("MyProfile", model);
+
+                TempData["Password"] = "Eski şifreniz yanlıştır.";
+                return View("MyProfile", newUser1);
             }
 
 
