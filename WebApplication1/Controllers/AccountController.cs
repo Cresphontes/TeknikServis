@@ -17,11 +17,13 @@ namespace WebApplication1.Controllers
     public class AccountController : BaseController
     {
 
+      
+
         [HttpGet]
         // GET: UserRegister
         public ActionResult RegisterIndex()
         {
-            ViewBag.CountryList = CountryList();
+           
             return View();
         }
 
@@ -148,6 +150,7 @@ namespace WebApplication1.Controllers
 
                 },userIdentity);
 
+               
             }
             catch (Exception ex)
             {
@@ -171,6 +174,8 @@ namespace WebApplication1.Controllers
             var authManager = HttpContext.GetOwinContext().Authentication;
 
             authManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+          
 
             return RedirectToAction("LoginIndex", "Account");
 

@@ -1848,6 +1848,7 @@
     <Content Include="Views\Account\LoginIndex.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialProfile.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Profile\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1859,7 +1860,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Profile\" />
     <Folder Include="Views\UserRegister\" />
   </ItemGroup>
   <ItemGroup>
