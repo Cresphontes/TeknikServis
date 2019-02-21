@@ -17,8 +17,6 @@ namespace WebApplication1.Controllers
     public class AccountController : BaseController
     {
 
-      
-
         [HttpGet]
         // GET: UserRegister
         public ActionResult RegisterIndex()
@@ -57,7 +55,7 @@ namespace WebApplication1.Controllers
                     Surname = model.Surname,
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
-                    BirthDate = model.BirthDate,
+                    BirthDate = model.BirthDate.Date,
                     Gender = model.Gender,
                     Country = model.Country,
                     City = model.City,

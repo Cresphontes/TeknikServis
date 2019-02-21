@@ -1,0 +1,192 @@
+﻿
+@model Web.Models.ViewModels.RegisterViewModel
+
+
+@section css
+	{
+
+	<link rel="stylesheet" href="~/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/select2/dist/css/select2.min.css">
+	<link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
+
+
+}
+
+
+<div id="UyeOl" style="height:650px" class="container-fluid">
+
+	@using (Html.BeginForm("RegisterIndex", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+	{
+		<div class="row">
+			<div class="col-md-6">
+				<div style="border:none" class="card">
+					<div class="card-body">
+						<div class="row">
+							<h5 style="margin-left:305px;padding-bottom:20px">Kişisel Bilgiler</h5>
+							<h5 style="margin-left:305px;padding-bottom:20px">@Html.ValidationSummary()</h5>
+							<h5 style="margin-left:305px;padding-bottom:20px">@TempData["Message"]</h5>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.Name, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "İsiminizi Giriniz" })
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.Surname, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @placeholder = "Soyisiminizi Giriniz" })
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.Email, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email Adresinizi Giriniz", @type = "email" })
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.PhoneNumber, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Telefon Numaranızı Giriniz" })
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.BirthDate, new { @id = "date", @class = " datepicker col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", @placeholder = "İsiminizi Giriniz", @type = "date" })
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="cono1" class="col-sm-3 text-right control-label col-form-label">Cinsiyet</label>
+							<div class="col-sm-9">
+								<div class="row mt-1">
+									<div class="custom-control custom-radio col-md-1">
+										<input value="Erkek" type="radio" class="custom-control-input" id="erkek" name="Gender" required>
+										<label style="padding-left:20px" class="custom-control-label" for="erkek">Erkek</label>
+									</div>
+									<div style="margin-left:15px" class="custom-control custom-radio col-md-1">
+										<input value="Kadın" type="radio" class="custom-control-input" id="kadın" name="Gender" required>
+										<label style="padding-left:20px" class="custom-control-label" for="kadın">Kadın</label>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.Country, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-md-9">
+								@Html.DropDownListFor(x => x.Country, (List<SelectListItem>)ViewBag.CountryList, new { @id = "country", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="cono1" class="col-sm-3 text-right control-label col-form-label">City</label>
+							<div class="col-md-9">
+								<select name="City" id="city" class="select2 form-control custom-select" style="width: 100%; height:36px;"></select>
+							</div>
+						</div>
+						<div class="form-group row">
+							@Html.LabelFor(x => x.Adress, new { @class = "col-sm-3 text-right control-label col-form-label" })
+							<div class="col-sm-9">
+								@Html.TextAreaFor(x => x.Adress, new { @class = "form-control", @placeholder = "Adres Bilgilerinizi giriniz (Mahalle,Sokak,apt no,daire no)" })
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	}
+
+
+
+</div>
+
+@section scripts {
+
+
+	<script src="~/assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="~/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+	<script src="~/assets/js/vendor/wow.min.js"></script>
+	<script src="~/assets/js/vendor/owl-carousel.min.js"></script>
+	<script src="~/assets/js/vendor/jquery.nice-select.min.js"></script>
+	<script src="~/assets/js/vendor/ion.rangeSlider.js"></script>
+	<script src="~/assets/js/main.js"></script>
+
+
+	<!-- This Page JS -->
+	<script src="~/Admin1/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+	<script src="~/Admin1/dist/js/pages/mask/mask.init.js"></script>
+	<script src="~/Admin1/assets/libs/select2/dist/js/select2.full.min.js"></script>
+	<script src="~/Admin1/assets/libs/select2/dist/js/select2.min.js"></script>
+	<script src="~/Admin1/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+	<script src="~/Admin1/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+	<script src="~/Admin1/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+	<script src="~/Admin1/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+	<script src="~/Admin1/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script src="~/Admin1/assets/libs/quill/dist/quill.min.js"></script>
+
+
+	<script>
+
+        $(".select2").select2();
+
+
+        $(document).ready(function () {
+
+            $("#country").change(function () {
+
+                var a = $(this).val();
+
+                $("#city").empty();
+
+                if (a == "TR") {
+
+                    var v;
+                    v += "<option>Edirne</option>";
+                    v += "<option>Kırklareli</option>";
+
+                    $("#city").html(v);
+                } else if (a == "ALM") {
+                    var v;
+                    v += "<option>Munich</option>";
+                    v += "<option>Berlin</option>";
+                    $("#city").html(v);
+
+                }
+                else if (a == "ING") {
+                    var v;
+                    v += "<option>Londra</option>";
+                    v += "<option>Manchester</option>";
+                    $("#city").html(v);
+
+                }
+                else if (a == "ITL") {
+                    var v;
+                    v += "<option>Milano</option>";
+                    v += "<option>Roma</option>";
+                    $("#city").html(v);
+
+                }
+                else if (a == "AB") {
+                    var v;
+                    v += "<option>Massachussetts</option>";
+                    v += "<option>Nebraska</option>";
+                    $("#city").html(v);
+
+                }
+            });
+
+        });
+
+        $(function () {
+            $('.datepicker').datepicker({
+                startDate: '-3d'
+            });
+
+
+        });
+
+
+	</script>
+	}
