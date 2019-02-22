@@ -1853,6 +1853,7 @@
     <Content Include="Views\Profile\MyProfile.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialEditModal.cshtml" />
+    <Content Include="Views\Account\Activation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,6 +11,8 @@ using Web.BLL.Identity;
 using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
 using static Web.BLL.Identity.MemberShipTools;
+using Web.BLL.Helpers;
+using Web.BLL.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -21,7 +23,7 @@ namespace WebApplication1.Controllers
         // GET: UserRegister
         public ActionResult RegisterIndex()
         {
-           
+            ViewBag.CountryList = CountryList();
             return View();
         }
 
@@ -60,7 +62,9 @@ namespace WebApplication1.Controllers
                     Country = model.Country,
                     City = model.City,
                     Adress = model.Adress,
-                    UserName = model.Username
+                    UserName = model.Username,
+                    ActivationCode = StringHelpers.GetCode()
+
                 };
 
                 var result = await userManager.CreateAsync(newUser, model.Password);
@@ -76,6 +80,21 @@ namespace WebApplication1.Controllers
                     {
                         await userManager.AddToRoleAsync(newUser.Id, "User");
                     }
+
+                    string siteUrl = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host +
+                                        (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+
+                    var emailService = new EmailService();
+
+                    var body = $"Merhaba <b>{newUser.Name} {newUser.Surname}</b><br>Hesabınızı aktif etmek için aşağıdaki linke tıklayınız<br> <a href='{siteUrl}/Account/Activation?code={newUser.ActivationCode}'>Aktivasyon Linki</a>";
+
+                    await emailService.SendAsync(new IdentityMessage()
+                    {
+                        Body = body,
+                        Subject = "Sitemize Hoşgeldiniz"
+                    }, newUser.Email);
+
+
 
                     TempData["Message"] = "Kaydınız başarı ile oluşturulmuştur.";
 
@@ -137,18 +156,26 @@ namespace WebApplication1.Controllers
                     ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı.");
                     return View("LoginIndex", model);
                 }
-
-                var authManager = HttpContext.GetOwinContext().Authentication;
-
-                var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                authManager.SignIn(new AuthenticationProperties()
+                if(user.EmailConfirmed == true)
                 {
-                    IsPersistent = model.RememberMe
+                    var authManager = HttpContext.GetOwinContext().Authentication;
 
-                },userIdentity);
+                    var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-               
+                    authManager.SignIn(new AuthenticationProperties()
+                    {
+                        IsPersistent = model.RememberMe
+
+                    }, userIdentity);
+                   
+                }
+                else
+                {
+                    TempData["ConfirmMessage"] = "Hesabınıza giriş yapmak için mailinize gelen aktivasyon linkine tıklayınız.";
+                    return View("LoginIndex", model);
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -163,7 +190,7 @@ namespace WebApplication1.Controllers
             }
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -173,10 +200,52 @@ namespace WebApplication1.Controllers
 
             authManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-          
+
 
             return RedirectToAction("LoginIndex", "Account");
 
         }
+
+        [HttpGet]
+        public ActionResult Activation(string code)
+        {
+
+            try
+            {
+                var userStore = NewUserStore();
+
+                var user = userStore.Users.FirstOrDefault(x => x.ActivationCode == code);
+
+                if (user != null)
+                {
+                    if (user.EmailConfirmed == true)
+                    {
+                        ViewBag.Message = "<span class='alert alert-success'>Bu Hesap Daha Önce Aktive Edilmiştir.</span>";
+
+                    }
+                    else
+                    {
+                        user.EmailConfirmed = true;
+                        userStore.Context.SaveChanges();
+
+                        ViewBag.Message = "<span class='alert alert-success'>Aktivasyon işleminiz başarılı.</span>";
+                    }
+
+                }
+                else
+                {
+                    ViewBag.Message = "<span class='alert alert-danger'>Aktivasyon işleminiz başarısız.</span>";
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = $"<span class='alert alert-danger'>Aktivasyon işleminde bir hata oluştu.</span>";
+            }
+
+            return View();
+        } 
+
+
     }
 }

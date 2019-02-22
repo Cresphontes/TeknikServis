@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\TroubleRecord.cs" />
+    <Compile Include="Enums\MessageStates.cs" />
     <Compile Include="Enums\Types.cs" />
     <Compile Include="Enums\BrandTypes.cs" />
     <Compile Include="IdentityEntities\Role.cs" />

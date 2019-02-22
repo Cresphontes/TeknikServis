@@ -42,6 +42,7 @@
 					<div style="margin-bottom: 40px" class="text-center">
 						<span class="db"><img sizes="5x5" src="~/assets/images/logo/favicon.png" alt="logo" /></span>
 						<h5>@Html.ValidationSummary()</h5>
+						<h5>@TempData["ConfirmMessage"]</h5>
 					</div>
 					<!-- Form -->
 					@using (Html.BeginForm("LoginIndex", "Account", FormMethod.Post))
