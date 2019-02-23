@@ -1,4 +1,5 @@
-﻿
+﻿@using Web.Models.Enums
+
 @{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -106,59 +107,59 @@
 				<div class="product-slider owl-carousel ftco-animate">
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod">
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Bulasik"})" class="img-prod">
 								<img class="img-fluid" src="~/modist/images/bulasik.png" alt="Colorlib Template">
 							</a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Bulaşık Makinesi Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Bulasik"})">Bulaşık Makinesi Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Buzdolabi.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Buzdolabi"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Buzdolabi.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Buzdolabı Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Buzdolabi"})">Buzdolabı Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Camasir.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Camasir"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Camasir.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Camaşır Makinesi Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Camasir"})">Camaşır Makinesi Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Ocak.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Ocak"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Ocak.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Ocak Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Ocak"})">Ocak Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Davlumbaz.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Davlumbaz"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Davlumbaz.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Davlumbaz Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Davlumbaz"})">Davlumbaz Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Firin.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Firin"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Firin.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Fırın Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Firin"})">Fırın Tamiri</a></h3>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="product">
-							<a href="@Url.Action("TroubleRecord","Home")" class="img-prod"><img class="img-fluid" src="~/modist/images/Mikrodalga.png" alt="Colorlib Template"></a>
+							<a href="@Url.Action("TroubleRecord","Home",new{type="Mikrodalga"})" class="img-prod"><img class="img-fluid" src="~/modist/images/Mikrodalga.png" alt="Colorlib Template"></a>
 							<div style="text-align:center" class="text pt-3 px-3">
-								<h3><a href="@Url.Action("TroubleRecord","Home")">Mikrodalga Tamiri</a></h3>
+								<h3><a href="@Url.Action("TroubleRecord","Home",new{type="Mikrodalga"})">Mikrodalga Tamiri</a></h3>
 							</div>
 						</div>
 					</div>

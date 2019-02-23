@@ -26,5 +26,21 @@ namespace WebApplication1.Controllers
             return list;
   
         }
+
+        protected List<SelectListItem> RoleList()
+        {
+
+            var list = new List<SelectListItem>()
+            {
+                new SelectListItem{Text = "Admin"},
+                new SelectListItem{Text = "User"},
+                new SelectListItem{Text = "Operator"},
+                new SelectListItem{Text = "Technician"}
+
+            };
+            return list;
+        }
+        
+    
     }
 }

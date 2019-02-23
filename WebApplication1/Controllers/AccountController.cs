@@ -135,7 +135,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-
         [HttpPost]
         public async Task<ActionResult> LoginIndex(LoginViewModel model)
         {

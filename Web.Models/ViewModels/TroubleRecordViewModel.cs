@@ -24,7 +24,7 @@ namespace Web.Models.ViewModels
         [Column("Mesaj")]
         [DisplayName("Arıza Bilgisi")]
         public string Message { get; set; }
-
+        [DisplayName("Fotoğraf")]
         public HttpPostedFileBase PostedFile { get; set; }
     }
 }

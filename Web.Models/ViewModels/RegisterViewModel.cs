@@ -63,5 +63,7 @@ namespace Web.Models.ViewModels
         [Display(Name = "Adres")]
         [Required]
         public string Adress { get; set; }
+
+        public string Role { get; set; }
     }
 }

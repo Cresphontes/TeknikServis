@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Web.BLL.Helpers;
 using Web.BLL.Repository;
 using Web.Models.Entities;
+using Web.Models.Enums;
 using Web.Models.ViewModels;
 
 namespace WebApplication1.Controllers
@@ -28,27 +29,43 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public ActionResult TroubleRecord()
+        public ActionResult TroubleRecord(string type)
         {
-            var db = new TroubleRecordRepo().GetAll();
+            var troubleRecord = new TroubleRecordViewModel();
 
-            var list = new List<TroubleRecordViewModel>();
-
-
-            foreach (var item in db)
+            if (type != null)
             {
-                list.Add(new TroubleRecordViewModel()
+                switch (type)
                 {
-                    BrandTypes = item.BrandTypes,
-                    Types = item.Types,
-                    Message = item.Message,
-                    PhotoPath = item.PhotoPath
-                });
+                    case "Buzdolabi":
+                        troubleRecord.Types = Types.buzdolabi;
+                        break;
+                    case "Bulasik":
+                        troubleRecord.Types = Types.bulasik;
+                        break;
+                    case "Camasir":
+                        troubleRecord.Types = Types.camasir;
+                        break;
+                    case "davlumbaz":
+                        troubleRecord.Types = Types.davlumbaz;
+                        break;
+                    case "Firin":
+                        troubleRecord.Types = Types.firin;
+                        break;
+                    case "Mikrodalga":
+                        troubleRecord.Types = Types.mikrodalga;
+                        break;
+                    case "Ocak":
+                        troubleRecord.Types = Types.ocak;
+                        break;
+
+                }
+                return View(troubleRecord);
             }
-
-            ViewBag.List = list;
-
-            return View();
+            else
+            {
+                return View();
+            }
         }
 
 
