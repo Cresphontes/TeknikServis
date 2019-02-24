@@ -53,7 +53,7 @@ namespace Web.Models.ViewModels
         [Display(Name = "BirthDate")]
         [Required]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
         [Display(Name = "Ülke")]
         [Required]
         public string Country { get; set; }
@@ -65,5 +65,6 @@ namespace Web.Models.ViewModels
         public string Adress { get; set; }
 
         public string Role { get; set; }
+        public bool EmailConfirmed { get; set; }
     }
 }

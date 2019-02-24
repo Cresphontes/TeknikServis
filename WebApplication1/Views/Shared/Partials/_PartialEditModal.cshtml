@@ -2,7 +2,7 @@
 @model Web.Models.ViewModels.RegisterViewModel
 
 
-@using (Html.BeginForm("EditModal", "Admin", FormMethod.Post, new { @class = "form-horizontal",id="form" }))
+@using (Html.BeginForm("EditModal", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "form" }))
 {
     <div class="container">
         <div class="modal-dialog">
@@ -43,20 +43,20 @@
                     <div class="form-group row">
                         @Html.LabelFor(x => x.BirthDate, new { @id = "date", @class = " datepicker col-sm-3 text-right control-label col-form-label" })
                         <div class="col-sm-9">
-                            @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", @type = "date", @id = "birth", @value = "2014-02-09" })
+                            @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", @type = "date", @id = "birth" })
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Cinsiyet</label>
                         <div class="col-sm-9">
                             <div class="row mt-1">
-                                <div style="margin-left:20px"class="custom-control custom-radio col-md-1">
+                                <div style="margin-left:20px" class="custom-control custom-radio col-md-1">
                                     <input value="Erkek" type="radio" class="custom-control-input " id="erkek" name="Gender" required>
                                     <label class="custom-control-label " for="erkek">Erkek</label>
                                 </div>
                                 <div style="margin-left:50px" class="custom-control custom-radio col-md-1">
                                     <input value="Kadın" type="radio" class="custom-control-input " id="kadın" name="Gender" required>
-                                    <label  class="custom-control-label " for="kadın">Kadın</label>
+                                    <label class="custom-control-label " for="kadın">Kadın</label>
                                 </div>
 
                             </div>
@@ -96,29 +96,46 @@
                             @Html.DropDownListFor(x => x.Role, (List<SelectListItem>)ViewBag.RoleList, new { @id = "country", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
                         </div>
                     </div>
-                                      
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Aktif</label>
+                        <div class="col-sm-9">
+                            <div class="row mt-1">
+                                <div style="margin-left: 20px" class="custom-control custom-checkbox col-md-1">
+                                    <input value="active" type="checkbox" class="custom-control-input " id="active" name="EmailConfirmed" required>
+                                    <label style="margin-bottom:14px" class="custom-control-label " for="active"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn primary" id="btnOk" onclick="">OK</button>
                     <button class="btn btn default" data-dismiss="modal" id="btnCancel">Cancel</button>
                 </div>
-                }
+
             </div>
         </div>
     </div>
 }
+
 
 <script>
 
     $(document).ready(function () {
 
 
-        if ("@Model.Gender" == "Erkek") {
+        if ("@Model.Gender" === "Erkek") {
 
             $("#erkek").attr("checked", "checked");
         } else {
 
             $("#kadın").attr("checked", "checked");
+        }
+
+        if (@Model.EmailConfirmed === true) {
+
+            $("#active").attr("checked", "checked");
         }
 
 
@@ -162,15 +179,13 @@
             }
         });
 
-       
+
 
     });
 
 
-
-
-
 </script>
+
 
 
 

@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
                     Surname = model.Surname,
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
-                    BirthDate = model.BirthDate.Date,
+                    BirthDate = Convert.ToDateTime(model.BirthDate),
                     Gender = model.Gender,
                     Country = model.Country,
                     City = model.City,

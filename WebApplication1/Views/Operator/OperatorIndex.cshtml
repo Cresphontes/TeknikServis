@@ -1,7 +1,7 @@
-﻿@model List<Web.Models.IdentityEntities.User>
+﻿@model List<Web.Models.Entities.TroubleRecord>
 @{
-    ViewBag.Title = "Users";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "OperatorIndex";
+
 
 
     var roles = ViewBag.Roles as List<Web.Models.IdentityEntities.Role>;
@@ -9,9 +9,6 @@
 
 }
 
-
-@section css{
-    
 
     <link href="~/Admin1/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Admin1/assets/extra-libs/multicheck/multicheck.css">
@@ -38,12 +35,6 @@
         }
     </style>
 
-   
-
-   
-
-
-}
 
 <h5>@Html.ValidationSummary()</h5>
 
@@ -52,17 +43,13 @@
 
         <tr>
             <th>#</th>
-            <th>Aktif</th>
             <th>İsim</th>
             <th>Soyisim</th>
-            <th>Pozisyon</th>
-            <th>Email</th>
-            <th>Telefon</th>
-            <th>Cinsiyet</th>
-            <th>Doğum Tarihi</th>
-            <th>Ülke</th>
-            <th>Şehir</th>
-            <th>Adres</th>
+            <th>Eşya</th>
+            <th>Marka</th>
+            <th>Fotoğraf</th>
+            <th>Bilgi</th>
+            <th>Teknisyen</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -72,59 +59,34 @@
         @for (int i = 0; i < Model.Count; i++)
         {
 
-           
-                foreach (var role in Model[i].Roles.ToList())
-                {
-                    foreach (var role1 in roles)
-                    {
-                        if (Model[i].Id == role.UserId)
-                        {
-                            if (role1.Id == role.RoleId)
-                            {
-                                <tr>
-                                    <td>@(i + 1)</td>
-                                    @if (@Model[i].EmailConfirmed)
-                                    { 
-                                        <td><input disabled="disabled" type="checkbox" checked="checked"></td>
-                                    }
-                                    else
-                                    {
-                                        <td><input disabled="disabled" type="checkbox"/></td>
-                                    }
-                                    <td>@Model[i].Name</td>
-                                    <td>@Model[i].Surname</td>
-                                    <td>@role1.Name</td>
-                                    <td>@Model[i].Email</td>
-                                    <td>@Model[i].PhoneNumber</td>
-                                    <td>@Model[i].Gender</td>
-                                    <td>@Model[i].BirthDate</td>
-                                    <td>@Model[i].Country</td>
-                                    <td>@Model[i].City</td>
-                                    <td>@Model[i].Adress</td>
-                                    <td>
-                                        <button name="@Model[i].Id" class="btn btn-warning a-btn-slide-text">Edit</button>
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("EditModal", "Admin")'>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("DeleteUsers","Admin",new{id=@Model[i].Id})" class="btn btn-danger a-btn-slide-text">
-                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                            <span><strong>Delete</strong></span>
-                                        </a>
-                                    </td>
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Model[i].User.Name</td>
+                <td>@Model[i].User.Surname</td>
+                <td>@Model[i].Types</td>
+                <td>@Model[i].BrandTypes</td>
+                <td><img alt="photo" src="@Model[i].PhotoPath"></td>
+                <td>@Model[i].Message</td>
+                <td></td>
+                <td>
+                    <button name="@Model[i].Id" class="btn btn-warning a-btn-slide-text">Edit</button>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("EditModal", "Admin")'>
+                    </div>
+                </td>
+                <td>
+                    <a href="@Url.Action("DeleteUsers","Admin",new{id=@Model[i].Id})" class="btn btn-danger a-btn-slide-text">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span><strong>Delete</strong></span>
+                    </a>
+                </td>
 
 
 
-                                </tr>
-                            }
-                        }
+            </tr>
 
-                    }
 
-                }
 
-           
 
 
 
@@ -137,7 +99,6 @@
 </table>
 
 
-@section scripts{
     <script src="~/assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="~/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
     <script src="~/assets/js/vendor/wow.min.js"></script>
@@ -163,50 +124,6 @@
         $(".select2").select2();
 
 
-        $(document).ready(function () {
-
-            $("#country").change(function () {
-
-                var a = $(this).val();
-
-                $("#city").empty();
-
-                if (a == "TR") {
-
-                    var v;
-                    v += "<option>Edirne</option>";
-                    v += "<option>Kırklareli</option>";
-
-                    $("#city").html(v);
-                } else if (a == "ALM") {
-                    var v;
-                    v += "<option>Munich</option>";
-                    v += "<option>Berlin</option>";
-                    $("#city").html(v);
-
-                } else if (a == "ING") {
-                    var v;
-                    v += "<option>Londra</option>";
-                    v += "<option>Manchester</option>";
-                    $("#city").html(v);
-
-                } else if (a == "ITL") {
-                    var v;
-                    v += "<option>Milano</option>";
-                    v += "<option>Roma</option>";
-                    $("#city").html(v);
-
-                } else if (a == "AB") {
-                    var v;
-                    v += "<option>Massachussetts</option>";
-                    v += "<option>Nebraska</option>";
-                    $("#city").html(v);
-
-                }
-            });
-
-        });
-
         $(function () {
             $('.datepicker').datepicker({
                 startDate: '-3d'
@@ -230,7 +147,7 @@
 
                 $.get(url,
                     function (data) {
-                       
+
                         $("#myModal").html(data);
                         $("#myModal").modal("show");
                     });
@@ -266,5 +183,5 @@
     </script>
 
 
-}
+
 

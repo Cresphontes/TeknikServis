@@ -5,10 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Web.BLL.Helpers;
+using Web.BLL.Identity;
 using Web.BLL.Repository;
 using Web.Models.Entities;
 using Web.Models.Enums;
+using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
 
 namespace WebApplication1.Controllers
@@ -74,11 +77,16 @@ namespace WebApplication1.Controllers
         {
             try
             {
+                var userManager = MemberShipTools.NewUserManager();
+                var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+                User user = userManager.FindById(id);
+
                 var data = new TroubleRecord()
                 {
                     BrandTypes = model.BrandTypes,
                     Types = model.Types,
-                    Message = model.Message
+                    Message = model.Message,
+                    User = user
                 };
 
                 if (model.PostedFile != null && model.PostedFile.ContentLength > 0)
@@ -113,10 +121,6 @@ namespace WebApplication1.Controllers
 
                 throw;
             }
-
-
-
-
 
 
             return View();

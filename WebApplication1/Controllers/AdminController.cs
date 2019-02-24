@@ -97,7 +97,7 @@ namespace WebApplication1.Controllers
                 user.Name = model.Name;
                 user.Surname = model.Surname;
                 user.Adress = model.Adress;
-                user.BirthDate = model.BirthDate;
+                user.BirthDate = Convert.ToDateTime(model.BirthDate);
                 user.City = model.City;
                 user.Country = model.Country;
                 user.Gender = model.Gender;
@@ -195,13 +195,14 @@ namespace WebApplication1.Controllers
                         Gender = "",
                         Name = "",
                         PhoneNumber = "",
-                        UserName = ""
+                        UserName = "",
+                        EmailConfirmed = false
                     };
 
                     var newUser1 = new RegisterViewModel()
                     {
                         Adress = user1.Adress,
-                        BirthDate = user1.BirthDate.Date,
+                        BirthDate = user1.BirthDate.ToString("yyyy-MM-dd"),
                         City = user1.City,
                         Country = user1.Country,
                         Email = user1.Email,
@@ -209,7 +210,8 @@ namespace WebApplication1.Controllers
                         Name = user1.Name,
                         Surname = user1.Surname,
                         PhoneNumber = user1.PhoneNumber,
-                        Username = user1.UserName
+                        Username = user1.UserName,
+                        EmailConfirmed = user1.EmailConfirmed
 
                     };
 
@@ -220,7 +222,7 @@ namespace WebApplication1.Controllers
                 var newUser = new RegisterViewModel()
                 {
                     Adress = user.Adress,
-                    BirthDate = user.BirthDate.Date,
+                    BirthDate = user.BirthDate.ToString("yyyy-MM-dd"),
                     City = user.City,
                     Country = user.Country,
                     Email = user.Email,
@@ -228,7 +230,8 @@ namespace WebApplication1.Controllers
                     Name = user.Name,
                     Surname = user.Surname,
                     PhoneNumber = user.PhoneNumber,
-                    Username = user.UserName
+                    Username = user.UserName,
+                    EmailConfirmed = user.EmailConfirmed
 
                 };
 
