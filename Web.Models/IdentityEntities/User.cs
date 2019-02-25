@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Web.Models.Entities;
+using Web.Models.EntityIdentity;
 
 namespace Web.Models.IdentityEntities
 {
-    public class User:IdentityUser
+    public class User : IdentityUser
     {
-     
+
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Gender { get; set; }
@@ -22,7 +23,7 @@ namespace Web.Models.IdentityEntities
         public string Adress { get; set; }
         public string ActivationCode { get; set; }
 
-        public virtual ICollection<TroubleRecord> TroubleRecords { get; set; }
+        public virtual ICollection<UserTroubleRecord> UserTroubleRecords { get; set; } = new HashSet<UserTroubleRecord>();
 
     }
 }

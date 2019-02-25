@@ -2,26 +2,26 @@
 
 <html lang="tr">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/Admin1/assets/images/favicon.png">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
-    <!-- Custom CSS -->
-    <link href="~/Admin1/assets/libs/flot/css/float-chart.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="~/Admin1/assets/images/favicon.png">
+	<title>Matrix Template - The Ultimate Multipurpose admin template</title>
+	<!-- Custom CSS -->
+	<link href="~/Admin1/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
 
-    @RenderSection("css", false);
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+
+	@RenderSection("css", false);
 </head>
 
 <body>
@@ -33,22 +33,22 @@
 	</div>
 	<div id="main-wrapper">
 
-		<aside  class="left-sidebar" data-sidebarbg="skin5">
+		<aside class="left-sidebar" data-sidebarbg="skin5">
 			<!-- Sidebar scroll-->
 			<div class="scroll-sidebar">
 				<!-- Sidebar navigation-->
 				<nav class="sidebar-nav">
 
 
-					<b  style="position:relative;bottom:30px" class="logo-icon p-l-10">
+					<b style="position:relative;bottom:30px" class="logo-icon p-l-10">
 						<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 						<!-- Dark Logo icon -->
-						<img style="width: 175px; height: 100px;margin-left:30px" src="~/Admin1/assets/images/logo-admin.png" alt="homepage" class="light-logo" />
+						<img style="width: 175px; height: 100px;margin-left:30px" src="~/Admin1/assets/images/icon.png" alt="homepage" class="light-logo" />
 
 					</b>
 
 					<ul id="sidebarnav" class="p-t-30">
-						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Users", "Admin")" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Kullanıcılar</span></a></li>
+						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("OperatorIndex", "Operator")" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Arızalar</span></a></li>
 
 
 						<li class="sidebar-item">
@@ -105,7 +105,7 @@
 	<script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 	<!--Menu sidebar -->
 	<script src="~/Admin1/dist/js/sidebarmenu.js"></script>
-	
+
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 

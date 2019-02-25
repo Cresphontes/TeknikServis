@@ -10,6 +10,7 @@ using Web.BLL.Helpers;
 using Web.BLL.Identity;
 using Web.BLL.Repository;
 using Web.Models.Entities;
+using Web.Models.EntityIdentity;
 using Web.Models.Enums;
 using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
@@ -85,9 +86,9 @@ namespace WebApplication1.Controllers
                 {
                     BrandTypes = model.BrandTypes,
                     Types = model.Types,
-                    Message = model.Message,
-                    User = user
+                    Message = model.Message, 
                 };
+
 
                 if (model.PostedFile != null && model.PostedFile.ContentLength > 0)
                 {
@@ -112,17 +113,26 @@ namespace WebApplication1.Controllers
                     data.PhotoPath = "/Upload/" + fileName + fileExt;
 
                 }
+                new TroubleRecordRepo().Insert(data);
 
+                var db = new UserTroubleRecordRepo();
 
-                var a = new TroubleRecordRepo().Insert(data);
+                var userTroubleRecord = new UserTroubleRecord();
+
+                userTroubleRecord.Id= user.Id;
+                userTroubleRecord.Id2 = data.Id;
+
+                db.Insert(userTroubleRecord);
+               
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
+              
             }
 
-
+            TempData["message"] = "Arıza Talebiniz Başarı ile Oluşturulmuştur.";
             return View();
         }
 

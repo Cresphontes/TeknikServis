@@ -15,8 +15,6 @@ namespace WebApplication1.Controllers
         // GET: Profile
         public ActionResult ProfileIndex()
         {
-
-
             var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
             if (id != null)
             {
@@ -29,7 +27,8 @@ namespace WebApplication1.Controllers
                 User defaultUser = new User()
                 {
                     Name = "",
-                    Surname = ""
+                    Surname = "",
+                     
                 };
 
                 return PartialView("Partials/_PartialProfile", defaultUser);

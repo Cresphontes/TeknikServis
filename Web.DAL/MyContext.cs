@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Web.Models.Entities;
+using Web.Models.EntityIdentity;
 using Web.Models.IdentityEntities;
 
 namespace Web.DAL
@@ -23,5 +24,6 @@ namespace Web.DAL
         }
 
         public virtual DbSet<TroubleRecord> TroubleRecords { get; set; }
+        //public virtual DbSet<UserTroubleRecord> UserTroubleRecords { get; set; }
     }
 }

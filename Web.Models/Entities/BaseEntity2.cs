@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Web.Models.Entities
 {
-    public abstract class BaseEntity<TId>
+    public class BaseEntity2<T1,T2>:BaseEntity<T1>
     {
         [Key]
-        [Column(Order=1)]
-        public TId Id { get; set; }
+        [Column(Order=2)]
+        public T2 Id2 { get; set; }
 
-        public DateTime? UpdateDate { get; set; }
     }
 }

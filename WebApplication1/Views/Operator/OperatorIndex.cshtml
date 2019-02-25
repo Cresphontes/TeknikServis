@@ -1,186 +1,183 @@
 ﻿@model List<Web.Models.Entities.TroubleRecord>
 @{
-    ViewBag.Title = "OperatorIndex";
+	ViewBag.Title = "OperatorIndex";
+	Layout = "~/Views/Shared/_OperatorLayout.cshtml";
 
 
-
-    var roles = ViewBag.Roles as List<Web.Models.IdentityEntities.Role>;
+	var roles = ViewBag.Roles as List<Web.Models.IdentityEntities.Role>;
 
 
 }
 
 
-    <link href="~/Admin1/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/extra-libs/multicheck/multicheck.css">
-    <link rel="stylesheet" href="~/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/select2/dist/css/select2.min.css">
-    @*<link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">*@
+<link href="~/Admin1/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="~/Admin1/assets/extra-libs/multicheck/multicheck.css">
+<link rel="stylesheet" href="~/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/select2/dist/css/select2.min.css">
+@*<link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">*@
 
 
 
-    <style>
-        a.btn:hover, .btn-warning:hover {
-            -webkit-transform: scale(1.1);
-            -moz-transform: scale(1.1);
-            -o-transform: scale(1.1);
-        }
+<style>
+	a.btn:hover, .btn-warning:hover {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		-o-transform: scale(1.1);
+	}
 
-        a.btn, .btn-warning {
-            -webkit-transform: scale(0.8);
-            -moz-transform: scale(0.8);
-            -o-transform: scale(0.8);
-            -webkit-transition-duration: 0.5s;
-            -moz-transition-duration: 0.5s;
-            -o-transition-duration: 0.5s;
-        }
-    </style>
+	a.btn, .btn-warning {
+		-webkit-transform: scale(0.8);
+		-moz-transform: scale(0.8);
+		-o-transform: scale(0.8);
+		-webkit-transition-duration: 0.5s;
+		-moz-transition-duration: 0.5s;
+		-o-transition-duration: 0.5s;
+	}
+</style>
 
 
 <h5>@Html.ValidationSummary()</h5>
 
 <table id="example" class="table table-striped table-bordered" style="width:100%">
-    <thead>
+	<thead>
 
-        <tr>
-            <th>#</th>
-            <th>İsim</th>
-            <th>Soyisim</th>
-            <th>Eşya</th>
-            <th>Marka</th>
-            <th>Fotoğraf</th>
-            <th>Bilgi</th>
-            <th>Teknisyen</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @for (int i = 0; i < Model.Count; i++)
-        {
-
-            <tr>
-                <td>@(i + 1)</td>
-                <td>@Model[i].User.Name</td>
-                <td>@Model[i].User.Surname</td>
-                <td>@Model[i].Types</td>
-                <td>@Model[i].BrandTypes</td>
-                <td><img alt="photo" src="@Model[i].PhotoPath"></td>
-                <td>@Model[i].Message</td>
-                <td></td>
-                <td>
-                    <button name="@Model[i].Id" class="btn btn-warning a-btn-slide-text">Edit</button>
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    <div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("EditModal", "Admin")'>
-                    </div>
-                </td>
-                <td>
-                    <a href="@Url.Action("DeleteUsers","Admin",new{id=@Model[i].Id})" class="btn btn-danger a-btn-slide-text">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span><strong>Delete</strong></span>
-                    </a>
-                </td>
+		<tr>
+			<th>#</th>
+			<th>İsim Soyisim</th>
+			<th>Eşya</th>
+			<th>Marka</th>
+			<th>Fotoğraf</th>
+			<th>Bilgi</th>
+			<th>Teknisyen</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
 
 
+		@for (int i = 0; i < Model.Count; i++)
+		{
+			var userList = Model[i].UserTroubleRecords.ToList();
+			
 
-            </tr>
-
+			foreach (var item in userList)
+			{
+				<tr>
+					<td>@(i + 1)</td>
+					<td>@item.User.Name @item.User.Surname</td>
+					<td>@Model[i].Types</td>
+					<td>@Model[i].BrandTypes</td>
+					<td><img alt="photo" style="width:75px;height:75px" src="@Model[i].PhotoPath"></td>
+					<td>@Model[i].Message</td>
+					<td></td>
+					<td>
+						<button name="@Model[i].Id" class="btn btn-warning a-btn-slide-text">Edit</button>
+						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						<div class="modal fade" id="myModal" role="dialog" data-url='@Url.Action("EditTrouble", "Operator")'>
+						</div>
+					</td>
+					<td>
+						<a href="@Url.Action("DeleteUsers","Admin",new{id=@Model[i].Id})" class="btn btn-danger a-btn-slide-text">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							<span><strong>Delete</strong></span>
+						</a>
+					</td>
 
 
 
+				</tr>
+			}
 
+		}
 
-
-        }
-
-
-    </tbody>
+	</tbody>
 
 </table>
 
 
-    <script src="~/assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="~/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-    <script src="~/assets/js/vendor/wow.min.js"></script>
-    <script src="~/assets/js/vendor/owl-carousel.min.js"></script>
-    <script src="~/assets/js/vendor/jquery.nice-select.min.js"></script>
-    <script src="~/assets/js/vendor/ion.rangeSlider.js"></script>
-    <script src="~/assets/js/main.js"></script>
+<script src="~/assets/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="~/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+<script src="~/assets/js/vendor/wow.min.js"></script>
+<script src="~/assets/js/vendor/owl-carousel.min.js"></script>
+<script src="~/assets/js/vendor/jquery.nice-select.min.js"></script>
+<script src="~/assets/js/vendor/ion.rangeSlider.js"></script>
+<script src="~/assets/js/main.js"></script>
 
-    <!-- This Page JS -->
-    <script src="~/Admin1/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    <script src="~/Admin1/dist/js/pages/mask/mask.init.js"></script>
-    <script src="~/Admin1/assets/libs/select2/dist/js/select2.full.min.js"></script>
-    <script src="~/Admin1/assets/libs/select2/dist/js/select2.min.js"></script>
-    <script src="~/Admin1/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="~/Admin1/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="~/Admin1/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-    <script src="~/Admin1/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-    <script src="~/Admin1/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="~/Admin1/assets/libs/quill/dist/quill.min.js"></script>
+<!-- This Page JS -->
+<script src="~/Admin1/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/Admin1/dist/js/pages/mask/mask.init.js"></script>
+<script src="~/Admin1/assets/libs/select2/dist/js/select2.full.min.js"></script>
+<script src="~/Admin1/assets/libs/select2/dist/js/select2.min.js"></script>
+<script src="~/Admin1/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+<script src="~/Admin1/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+<script src="~/Admin1/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+<script src="~/Admin1/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script src="~/Admin1/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Admin1/assets/libs/quill/dist/quill.min.js"></script>
 
-    <script>
+<script>
 
-        $(".select2").select2();
-
-
-        $(function () {
-            $('.datepicker').datepicker({
-                startDate: '-3d'
-            });
-        });
-
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $(".btn-warning").click(function () {
-
-                var id = this.name;
+	$(".select2").select2();
 
 
-                var url = $("#myModal").data("url");
-                url += "/" + id;
+	$(function () {
+		$('.datepicker').datepicker({
+			startDate: '-3d'
+		});
+	});
 
-                $.get(url,
-                    function (data) {
+</script>
 
-                        $("#myModal").html(data);
-                        $("#myModal").modal("show");
-                    });
-            });
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        });
+<script type="text/javascript">
 
-    </script>
+	$(document).ready(function () {
+		$(".btn-warning").click(function () {
 
-    <script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="~/Admin1/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="~/Admin1/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="~/Admin1/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="~/Admin1/dist/js/custom.min.js"></script>
-    <!-- this page js -->
-    <script src="~/Admin1/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-    <script src="~/Admin1/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
-    <script src="~/Admin1/assets/extra-libs/DataTables/datatables.min.js"></script>
+			var id = this.name;
 
-    <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable();
-    </script>
+
+			var url = $("#myModal").data("url");
+			url += "/" + id;
+
+			$.get(url,
+				function (data) {
+
+					$("#myModal").html(data);
+					$("#myModal").modal("show");
+				});
+		});
+
+	});
+
+</script>
+
+<script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/Admin1/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="~/Admin1/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="~/Admin1/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="~/Admin1/dist/js/custom.min.js"></script>
+<!-- this page js -->
+<script src="~/Admin1/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="~/Admin1/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="~/Admin1/assets/extra-libs/DataTables/datatables.min.js"></script>
+
+<script>
+	/****************************************
+	 *       Basic Table                   *
+	 ****************************************/
+	$('#zero_config').DataTable();
+</script>
 
 
 

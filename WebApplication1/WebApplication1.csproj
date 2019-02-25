@@ -170,6 +170,7 @@
     <Content Include="Admin1\assets\extra-libs\multicheck\jquery.multicheck.js" />
     <Content Include="Admin1\assets\extra-libs\multicheck\multicheck.css" />
     <Content Include="Admin1\assets\extra-libs\sparkline\sparkline.js" />
+    <Content Include="Admin1\assets\images\icon.png" />
     <Content Include="Admin1\assets\images\logo-admin.png" />
     <Content Include="Admin1\assets\images\background\img4.jpg" />
     <Content Include="Admin1\assets\images\background\img5.jpg" />
@@ -1856,6 +1857,8 @@
     <Content Include="Views\Shared\Partials\_PartialEditModal.cshtml" />
     <Content Include="Views\Account\Activation.cshtml" />
     <Content Include="Views\Operator\OperatorIndex.cshtml" />
+    <Content Include="Views\Shared\_OperatorLayout.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialEditTrouble.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

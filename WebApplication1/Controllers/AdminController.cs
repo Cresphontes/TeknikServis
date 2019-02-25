@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditModal(RegisterViewModel model)
+        public async Task<ActionResult> EditModal(AdminEditUserViewModel model)
         {
             ViewBag.CountryList = CountryList();
             var roles = NewRoleManager().Roles.ToList();
@@ -199,7 +199,7 @@ namespace WebApplication1.Controllers
                         EmailConfirmed = false
                     };
 
-                    var newUser1 = new RegisterViewModel()
+                    var newUser1 = new AdminEditUserViewModel()
                     {
                         Adress = user1.Adress,
                         BirthDate = user1.BirthDate.ToString("yyyy-MM-dd"),
@@ -211,7 +211,8 @@ namespace WebApplication1.Controllers
                         Surname = user1.Surname,
                         PhoneNumber = user1.PhoneNumber,
                         Username = user1.UserName,
-                        EmailConfirmed = user1.EmailConfirmed
+                        EmailConfirmed = user1.EmailConfirmed,
+                        
 
                     };
 
@@ -219,7 +220,7 @@ namespace WebApplication1.Controllers
                 }
                 var user = NewUserManager().FindById(id);
 
-                var newUser = new RegisterViewModel()
+                var newUser = new AdminEditUserViewModel()
                 {
                     Adress = user.Adress,
                     BirthDate = user.BirthDate.ToString("yyyy-MM-dd"),

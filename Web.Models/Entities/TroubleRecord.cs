@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Models.EntityIdentity;
 using Web.Models.Enums;
 using Web.Models.IdentityEntities;
 
@@ -15,8 +16,6 @@ namespace Web.Models.Entities
     public class TroubleRecord:BaseEntity<int>
     {
        
-      
-
         [Column("Beyaz Esya")]
         [DisplayName("Beyaz Eşya Tipi")]
         public Types Types  { get; set; }
@@ -31,10 +30,7 @@ namespace Web.Models.Entities
         public string Message { get; set; }
 
         
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+       public virtual ICollection<UserTroubleRecord> UserTroubleRecords { get; set; } = new HashSet<UserTroubleRecord>();
 
     }
 }
