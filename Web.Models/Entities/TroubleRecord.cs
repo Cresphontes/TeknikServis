@@ -18,15 +18,21 @@ namespace Web.Models.Entities
        
         [Column("Beyaz Esya")]
         [DisplayName("Beyaz Eşya Tipi")]
+        [Required]
         public Types Types  { get; set; }
         [Column("Marka")]
         [DisplayName("Marka")]
+        [Required]
         public BrandTypes BrandTypes { get; set; }
         [Column("Fotoğraf")]
         [DisplayName("Fotoğraf")]
+        [Required]
         public string PhotoPath { get; set; }
         [Column("Mesaj")]
         [DisplayName("Arıza Bilgisi")]
+        [MaxLength(100, ErrorMessage = "Mesaj kısmına en fazla 100 karakter girebilirsiniz.")]
+        [MinLength(10, ErrorMessage = "Mesaj kısmına en az 10 karakter girmelisiniz.")]
+        [Required]
         public string Message { get; set; }
 
         

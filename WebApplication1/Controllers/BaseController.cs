@@ -60,7 +60,7 @@ namespace WebApplication1.Controllers
                     {
                         if (userRole.RoleId == role.Id && role.Name == "Technician")
                         {
-                            list.Add(new SelectListItem { Text = user.ToString()});
+                            list.Add(new SelectListItem { Text = user.UserName});
                             break;
                         }
                         else

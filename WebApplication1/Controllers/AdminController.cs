@@ -29,6 +29,7 @@ namespace WebApplication1.Controllers
             {
                 var users = NewUserManager().Users.ToList();
                 var roles = NewRoleManager().Roles.ToList();
+                
 
                 if (users != null && roles != null)
                 {
