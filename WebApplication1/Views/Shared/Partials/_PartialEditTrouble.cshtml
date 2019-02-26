@@ -21,13 +21,13 @@
 					<div class="form-group row">
 						@Html.LabelFor(x => x.Types, new { @class = "col-sm-3 text-right control-label col-form-label" })
 						<div class="col-md-9">
-							@Html.DropDownListFor(x => x.Types, (List<SelectListItem>)ViewBag.Types, new { @id = "types", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
+							@Html.EnumDropDownListFor(x => x.Types,new { @id = "types", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
 						</div>
 					</div>
 					<div class="form-group row">
 						@Html.LabelFor(x => x.BrandTypes, new { @class = "col-sm-3 text-right control-label col-form-label" })
 						<div class="col-md-9">
-							@Html.DropDownListFor(x => x.BrandTypes, (List<SelectListItem>)ViewBag.BrandTypes, new { @id = "brandTypes", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
+							@Html.EnumDropDownListFor(x => x.BrandTypes, new { @id = "brandTypes", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
 						</div>
 					</div>
 					<div class="form-group row">

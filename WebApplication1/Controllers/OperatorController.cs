@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Web.BLL.Repository;
 using Web.Models.Entities;
 using Web.Models.EntityIdentity;
+using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
 using static Web.BLL.Identity.MemberShipTools;
 
@@ -12,7 +14,27 @@ namespace WebApplication1.Controllers
 {
     public class OperatorController : BaseController
     {
-        // GET: Operator
+        public ActionResult OperatorProfile()
+        {
+            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            if (id != null)
+            {
+                User user = NewUserManager().FindById(id);
+
+                return PartialView("Partials/_PartialAdminProfile", user);
+            }
+            else
+            {
+                User defaultUser = new User()
+                {
+                    Name = "",
+                    Surname = "",
+
+                };
+
+                return PartialView("Partials/_PartialAdminProfile", defaultUser);
+            }
+        }
         public ActionResult OperatorIndex()
         {
 
@@ -44,8 +66,11 @@ namespace WebApplication1.Controllers
             {
 
                 ViewBag.UserList = UserList();
-                ViewBag.Types = TypesList();
-                ViewBag.BrandTypes = BrandTypesList();
+             
+
+                var users = NewUserManager().Users.ToList();
+                ViewBag.Users = users;
+
 
                 if (id == null)
                 {
@@ -86,13 +111,20 @@ namespace WebApplication1.Controllers
                 {
                     if (userTrouble.Id2 == newTroubleRecord.Id)
                     {
-                        foreach (var role in userTrouble.User.Roles)
+                        foreach (var item1 in users)
                         {
-                            foreach (var role1 in roles)
+                            if (userTrouble.Id == item1.Id)
                             {
-                                if (role.RoleId == role1.Id && role1.Name == "Technician")
+                                foreach (var item2 in item1.Roles)
                                 {
-                                    newTroubleRecord.UserName = userTrouble.User.UserName;
+                                    foreach (var item3 in roles)
+                                    {
+                                        if (item2.RoleId == item3.Id && item3.Name == "Technician")
+                                        {
+                                            newTroubleRecord.UserName = userTrouble.User.UserName;
+                                        }
+                                    }
+
                                 }
                             }
 
@@ -123,15 +155,23 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult EditTrouble(TroubleRecordViewModel model)
         {
-            if (!ModelState.IsValid)
+            ViewBag.UserList = UserList();
+        
+
+            if (model.PostedFile != null)
             {
-                return PartialView("Partials/_PartialEditTrouble", model);
+                if (!ModelState.IsValid)
+                {
+                    return PartialView("Partials/_PartialEditTrouble", model);
+                }
             }
 
+            var troubleDb = new TroubleRecordRepo();
+
             var dbUserTrouble = new UserTroubleRecordRepo();
-            var troubleRecords = new TroubleRecordRepo().GetAll();
+            var troubleRecords = troubleDb.GetAll();
             var roles = NewRoleManager().Roles.ToList();
-            var userTroubleList = new UserTroubleRecordRepo().GetAll();
+            var userTroubleList = dbUserTrouble.GetAll();
             var users = NewUserManager().Users.ToList();
 
             ViewBag.Roles = roles;
@@ -152,6 +192,12 @@ namespace WebApplication1.Controllers
             {
                 troubleRecord.PhotoPath = model.PhotoPath;
             }
+            else
+            {
+                troubleRecord.PhotoPath = troubleRecord.PhotoPath;
+            }
+
+            troubleDb.Update(troubleRecord);
 
             foreach (var item in userTroubleList)
             {
@@ -176,7 +222,7 @@ namespace WebApplication1.Controllers
 
                     }
                 }
-               
+
             }
 
             var userTrouble = new UserTroubleRecord()
@@ -190,6 +236,55 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("OperatorIndex");
 
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteTroubles(int? id)
+        {
+            try
+            {
+
+                var db = new TroubleRecordRepo();
+
+                var trouble = db.GetById(id);
+                db.Delete(trouble);
+
+                var newDb = new TroubleRecordRepo();
+                var troubleList = newDb.GetAll();
+
+                var roles = NewRoleManager().Roles.ToList();
+                var userTroubleList = new UserTroubleRecordRepo().GetAll();
+                var users = NewUserManager().Users.ToList();
+
+                if (troubleList != null && roles != null)
+                {
+                    ViewBag.Roles = roles;
+                    ViewBag.userTroubleList = userTroubleList;
+                    ViewBag.Users = users;
+
+                    return View("OperatorIndex", troubleList);
+                }
+                else
+                {
+                    return View();
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                TempData["model"] = new ErrorViewModel()
+                {
+                    Text = "Bir Hata Oluştu",
+                    ActionName = "Users",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

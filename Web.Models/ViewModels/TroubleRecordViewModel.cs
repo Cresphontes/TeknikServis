@@ -25,7 +25,7 @@ namespace Web.Models.ViewModels
         public BrandTypes BrandTypes { get; set; }
         [Column("Fotoğraf")]
         [DisplayName("Fotoğraf")]
-        [Required]
+        
         public string PhotoPath { get; set; }
         [Column("Mesaj")]
         [DisplayName("Arıza Bilgisi")]

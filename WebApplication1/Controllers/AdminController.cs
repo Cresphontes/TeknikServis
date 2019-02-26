@@ -19,6 +19,105 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public ActionResult AdminProfile()
+        {
+
+            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            if (id != null)
+            {
+                User user = NewUserManager().FindById(id);
+
+                return PartialView("Partials/_PartialAdminProfile", user);
+            }
+            else
+            {
+                User defaultUser = new User()
+                {
+                    Name = "",
+                    Surname = "",
+
+                };
+
+                return PartialView("Partials/_PartialAdminProfile", defaultUser);
+            }
+        }
+        public ActionResult EditAdminProfile(string id)
+        {
+            try
+            {
+                ViewBag.CountryList = CountryList();
+                ViewBag.RoleList = RoleList();
+
+                if (id == null)
+                {
+                    User user1 = new User()
+                    {
+                        Adress = "",
+                        BirthDate = DateTime.Now,
+                        City = "",
+                        Country = "",
+                        Email = "",
+                        Gender = "",
+                        Name = "",
+                        PhoneNumber = "",
+                        UserName = "",
+                        EmailConfirmed = false
+                    };
+
+                    var newUser1 = new AdminEditUserViewModel()
+                    {
+                        Adress = user1.Adress,
+                        BirthDate = user1.BirthDate.ToString("yyyy-MM-dd"),
+                        City = user1.City,
+                        Country = user1.Country,
+                        Email = user1.Email,
+                        Gender = user1.Gender,
+                        Name = user1.Name,
+                        Surname = user1.Surname,
+                        PhoneNumber = user1.PhoneNumber,
+                        Username = user1.UserName,
+                        EmailConfirmed = user1.EmailConfirmed,
+
+
+                    };
+
+                    return PartialView("Partials/_PartialEditAdminProfile", newUser1);
+                }
+                var user = NewUserManager().FindById(id);
+
+                var newUser = new AdminEditUserViewModel()
+                {
+                    Adress = user.Adress,
+                    BirthDate = user.BirthDate.ToString("yyyy-MM-dd"),
+                    City = user.City,
+                    Country = user.Country,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    PhoneNumber = user.PhoneNumber,
+                    Username = user.UserName,
+                    EmailConfirmed = user.EmailConfirmed
+
+                };
+
+
+                return PartialView("Partials/_PartialEditAdminProfile", newUser);
+            }
+            catch (Exception ex)
+            {
+
+                TempData["model"] = new ErrorViewModel()
+                {
+                    Text = "Bir Hata Oluştu",
+                    ActionName = "Users",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+
+                return RedirectToAction("Error", "Home");
+            }
+        }
 
         [HttpGet]
         public ActionResult Users()

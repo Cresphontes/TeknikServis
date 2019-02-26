@@ -14,6 +14,7 @@ using Web.Models.EntityIdentity;
 using Web.Models.Enums;
 using Web.Models.IdentityEntities;
 using Web.Models.ViewModels;
+using static Web.BLL.Identity.MemberShipTools;
 
 namespace WebApplication1.Controllers
 {
@@ -24,6 +25,10 @@ namespace WebApplication1.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            var user = NewUserManager().FindById(id);
+
+            ViewBag.User = user;
             return View();
         }
 
@@ -76,6 +81,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult TroubleRecord(TroubleRecordViewModel model)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             try
             {
                 var userManager = MemberShipTools.NewUserManager();

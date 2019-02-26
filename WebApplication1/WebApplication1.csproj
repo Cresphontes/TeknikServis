@@ -187,6 +187,7 @@
     <Content Include="Admin1\assets\images\logo-icon.png" />
     <Content Include="Admin1\assets\images\logo-text.png" />
     <Content Include="Admin1\assets\images\logo.png" />
+    <Content Include="Admin1\assets\images\user-admin-512.png" />
     <Content Include="Admin1\assets\images\users\1-old.jpg" />
     <Content Include="Admin1\assets\images\users\1.jpg" />
     <Content Include="Admin1\assets\images\users\1.png" />
@@ -1858,6 +1859,8 @@
     <Content Include="Views\Operator\OperatorIndex.cshtml" />
     <Content Include="Views\Shared\_OperatorLayout.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialEditTrouble.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialAdminProfile.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialEditAdminProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -147,6 +147,7 @@ namespace WebApplication1.Controllers
                 }
 
                 var userManager = NewUserManager();
+                var roleManager = NewRoleManager();
 
                 var user = await userManager.FindAsync(model.Username, model.Password);
 
@@ -155,26 +156,55 @@ namespace WebApplication1.Controllers
                     ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı.");
                     return View("LoginIndex", model);
                 }
-                if(user.EmailConfirmed == true)
-                {
-                    var authManager = HttpContext.GetOwinContext().Authentication;
-
-                    var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                    authManager.SignIn(new AuthenticationProperties()
-                    {
-                        IsPersistent = model.RememberMe
-
-                    }, userIdentity);
-                   
-                }
                 else
                 {
-                    TempData["ConfirmMessage"] = "Hesabınıza giriş yapmak için mailinize gelen aktivasyon linkine tıklayınız.";
-                    return View("LoginIndex", model);
+                    if (user.EmailConfirmed == true)
+                    {
+                        var authManager = HttpContext.GetOwinContext().Authentication;
+
+                        var userIdentity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                        authManager.SignIn(new AuthenticationProperties()
+                        {
+                            IsPersistent = model.RememberMe
+
+                        }, userIdentity);
+
+                        foreach (var userRole in user.Roles)
+                        {
+                            foreach (var role in roleManager.Roles)
+                            {
+                                if (role.Id == userRole.RoleId)
+                                {
+                                    if (role.Name == "Admin")
+                                    {
+                                        return RedirectToAction("Users", "Admin");
+                                    }
+                                    else if (role.Name == "Operator")
+                                    {
+                                        return RedirectToAction("OperatorIndex", "Operator");
+                                    }
+                                    else
+                                    {
+                                        return RedirectToAction("Index", "Home");
+                                    }
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        TempData["ConfirmMessage"] = "Hesabınıza giriş yapmak için mailinize gelen aktivasyon linkine tıklayınız.";
+                        return View("LoginIndex", model);
+                    }
+
+                    return RedirectToAction("Index", "Home");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -188,8 +218,6 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -235,7 +263,7 @@ namespace WebApplication1.Controllers
                 {
                     ViewBag.Message = "<span class='alert alert-danger'>Aktivasyon işleminiz başarısız.</span>";
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -243,7 +271,7 @@ namespace WebApplication1.Controllers
             }
 
             return View();
-        } 
+        }
 
 
     }

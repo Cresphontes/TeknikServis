@@ -33,79 +33,52 @@
 	</div>
 	<div id="main-wrapper">
 
-		<aside  class="left-sidebar" data-sidebarbg="skin5">
+		<aside class="left-sidebar" data-sidebarbg="skin5">
 			<!-- Sidebar scroll-->
 			<div class="scroll-sidebar">
 				<!-- Sidebar navigation-->
 				<nav class="sidebar-nav">
 
 
-					<b  style="position:relative;bottom:30px" class="logo-icon p-l-10">
+					<b style="position:relative;bottom:30px" class="logo-icon p-l-10">
 						<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 						<!-- Dark Logo icon -->
-						<img style="width: 175px; height: 100px;margin-left:30px" src="~/Admin1/assets/images/logo-admin.png" alt="homepage" class="light-logo" />
-
+						<img style="width: 200px; height: 175px;margin-left:30px" src="~/Admin1/assets/images/user-admin-512.png" alt="homepage" class="light-logo" />
 					</b>
 
-					<ul id="sidebarnav" class="p-t-30">
+					@if (HttpContext.Current.User.Identity.IsAuthenticated)
+					{
+						Html.RenderAction("AdminProfile", "Admin");
+					}
+
+					<ul style="position:relative;top:30px" id="sidebarnav" class="p-t-30">
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Users", "Admin")" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Kullanıcılar</span></a></li>
-
-
-						<li class="sidebar-item">
-							<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
-							<ul aria-expanded="false" class="collapse  first-level">
-								<li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic </span></a></li>
-								<li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard </span></a></li>
-							</ul>
-						</li>
-
 					</ul>
 				</nav>
 				<!-- End Sidebar navigation -->
 			</div>
 			<!-- End Sidebar scroll-->
 		</aside>
-		<!-- ============================================================== -->
-		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-		<!-- ============================================================== -->
-		<!-- Page wrapper  -->
-		<!-- ============================================================== -->
+
 		<div class="page-wrapper">
 
-			<!-- ============================================================== -->
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
 			<div class="container-fluid">
 				@RenderBody()
 			</div>
-			<!-- ============================================================== -->
-			<!-- End Container fluid  -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- footer -->
-			<!-- ============================================================== -->
-			<footer class="footer text-center">
-				All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-			</footer>
-			<!-- ============================================================== -->
-			<!-- End footer -->
-			<!-- ============================================================== -->
+
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+
 	</div>
 
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
+
 	<script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap tether Core JavaScript -->
+
 	<script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 	<script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-	<!--Menu sidebar -->
+
 	<script src="~/Admin1/dist/js/sidebarmenu.js"></script>
-	
+
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
@@ -116,6 +89,8 @@
 			});
 		});
 	</script>
+
+
 
 	@RenderSection("scripts", false);
 </body>

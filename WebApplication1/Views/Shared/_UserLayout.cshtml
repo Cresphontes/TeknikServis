@@ -1,5 +1,7 @@
 ﻿
-
+@{
+	var user = ViewBag.User;
+}
 <!DOCTYPE html>
 
 <html>
@@ -31,7 +33,7 @@
 					<a href="index.html"><img style="width:100%;height:100px" src="~/assets/images/logo/favicon.png" alt="logo"></a>
 				</div>
 			</div>
-			<div class="col-lg-8">
+			<div class="col-lg-6">
 				<div class="custom-navbar">
 					<span></span>
 					<span></span>
@@ -52,12 +54,17 @@
 							</ul>
 						</li>
 						<li><a href="#">ILETISIM</a></li>
-						<li style="margin-right:30px" class="menu-btn">
-							<a href="@Url.Action("LoginIndex", "Account")" class="login">GIRIS</a>
-							<a href="@Url.Action("RegisterIndex", "Account")" class="template-btn">UYE OL</a>
-						</li>
+
 
 					</ul>
+
+				</div>
+
+			</div>
+			<div id="giris-cikis" style="position:relative;left:200px;top:25px">
+				<div style="margin-right:30px" class="menu-btn">
+					<a href="@Url.Action("LoginIndex", "Account")" class="login">GIRIS</a>
+					<a href="@Url.Action("RegisterIndex", "Account")" class="template-btn">UYE OL</a>
 				</div>
 			</div>
 
@@ -90,7 +97,16 @@
 
 	@RenderSection("scripts", required: false)
 
-	
+	<script>
+		if (@user == null) {
+			$("#giris-cikis").css("display", "none");
+		} else {
+			$("#giris-cikis").css("display", "block");
+		}
+
+	</script>
+
+
 </body>
 </html>
 

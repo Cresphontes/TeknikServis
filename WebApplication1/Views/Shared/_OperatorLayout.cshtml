@@ -2,6 +2,8 @@
 
 <html lang="tr">
 <head>
+
+
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
 	<meta charset="utf-8">
@@ -10,6 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
+
+
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="~/Admin1/assets/images/favicon.png">
 	<title>Matrix Template - The Ultimate Multipurpose admin template</title>
@@ -43,21 +47,17 @@
 					<b style="position:relative;bottom:30px" class="logo-icon p-l-10">
 						<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 						<!-- Dark Logo icon -->
-						<img style="width: 175px; height: 100px;margin-left:30px" src="~/Admin1/assets/images/icon.png" alt="homepage" class="light-logo" />
+						<img style="width: 200px; height: 175px;margin-left:30px" src="~/Admin1/assets/images/icon.png" alt="homepage" class="light-logo" />
 
 					</b>
 
-					<ul id="sidebarnav" class="p-t-30">
+					@if (HttpContext.Current.User.Identity.IsAuthenticated)
+					{
+						Html.RenderAction("OperatorProfile", "Operator");
+					}
+
+					<ul style="position:relative;top:30px" id="sidebarnav" class="p-t-30">
 						<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("OperatorIndex", "Operator")" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Arızalar</span></a></li>
-
-
-						<li class="sidebar-item">
-							<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
-							<ul aria-expanded="false" class="collapse  first-level">
-								<li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic </span></a></li>
-								<li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard </span></a></li>
-							</ul>
-						</li>
 
 					</ul>
 				</nav>
@@ -65,31 +65,14 @@
 			</div>
 			<!-- End Sidebar scroll-->
 		</aside>
-		<!-- ============================================================== -->
-		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-		<!-- ============================================================== -->
-		<!-- Page wrapper  -->
-		<!-- ============================================================== -->
+		
 		<div class="page-wrapper">
 
-			<!-- ============================================================== -->
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
+		
 			<div class="container-fluid">
 				@RenderBody()
 			</div>
-			<!-- ============================================================== -->
-			<!-- End Container fluid  -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- footer -->
-			<!-- ============================================================== -->
-			<footer class="footer text-center">
-				All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-			</footer>
-			<!-- ============================================================== -->
-			<!-- End footer -->
-			<!-- ============================================================== -->
+
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
