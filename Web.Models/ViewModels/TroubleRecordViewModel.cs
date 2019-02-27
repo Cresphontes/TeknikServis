@@ -38,6 +38,9 @@ namespace Web.Models.ViewModels
         public HttpPostedFileBase PostedFile { get; set; }
 
         [DisplayName("Teknisyen")]
-        public string UserName { get; set; }   
+        public string UserName { get; set; }
+        public bool Wait { get; set; } =false;
+        public bool AtService { get; set; } = false;
+        public bool Done { get; set; } = false;
     }
 }

@@ -15,17 +15,14 @@
 
 
 	<!-- Favicon icon -->
-	<link rel="icon" type="image/png" sizes="16x16" href="~/Admin1/assets/images/favicon.png">
-	<title>Matrix Template - The Ultimate Multipurpose admin template</title>
-	<!-- Custom CSS -->
-	<link href="~/Admin1/assets/libs/flot/css/float-chart.css" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
+    <link href="~/Admin1/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
-
-	@RenderSection("css", false);
+    @RenderSection("css", false);
 </head>
 
 <body>
@@ -79,28 +76,28 @@
 		<!-- ============================================================== -->
 	</div>
 
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
-	<script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap tether Core JavaScript -->
-	<script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-	<script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-	<!--Menu sidebar -->
-	<script src="~/Admin1/dist/js/sidebarmenu.js"></script>
+<script src="~/Admin1/assets/libs/jquery/dist/jquery.min.js"></script>
 
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/Admin1/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="~/Admin1/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/Admin1/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 
-	<script>
-		$(document).ready(function () {
-			$('#example').dataTable({
-				"scrollX": true
-			});
-		});
-	</script>
+<script src="~/Admin1/dist/js/sidebarmenu.js"></script>
 
-	@RenderSection("scripts", false);
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "scrollX": true
+        });
+    });
+</script>
+
+
+
+@RenderSection("scripts", false);
 </body>
 </html>
 

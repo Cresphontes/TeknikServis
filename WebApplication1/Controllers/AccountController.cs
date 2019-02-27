@@ -24,7 +24,11 @@ namespace WebApplication1.Controllers
         public ActionResult RegisterIndex()
         {
             ViewBag.CountryList = CountryList();
-            return View();
+            var model = new RegisterViewModel()
+            {
+                Gender = "",
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -183,6 +187,10 @@ namespace WebApplication1.Controllers
                                     else if (role.Name == "Operator")
                                     {
                                         return RedirectToAction("OperatorIndex", "Operator");
+                                    }
+                                    else if (role.Name == "Technician")
+                                    {
+                                        return RedirectToAction("TechnicianTrouble", "Technician");
                                     }
                                     else
                                     {

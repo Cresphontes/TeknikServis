@@ -25,10 +25,6 @@ namespace WebApplication1.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
-            var user = NewUserManager().FindById(id);
-
-            ViewBag.User = user;
             return View();
         }
 
@@ -97,7 +93,12 @@ namespace WebApplication1.Controllers
                 {
                     BrandTypes = model.BrandTypes,
                     Types = model.Types,
-                    Message = model.Message, 
+                    Message = model.Message,
+                    Wait = model.Wait,
+                    AtService = model.AtService,
+                    Done = model.Done
+
+
                 };
 
 

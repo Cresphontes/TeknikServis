@@ -1,0 +1,252 @@
+﻿@using Web.Models.Entities
+@using Web.Models.IdentityEntities
+
+@model List<Web.Models.EntityIdentity.UserTroubleRecord>
+
+@{
+    Layout = null;
+
+    User user = ViewBag.User;
+    List<TroubleRecord> troubleRecord = ViewBag.TroubleRecord;
+
+
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard V.1 | Kiaalap - Kiaalap Admin Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Admin/css/owl.theme.css">
+    <link rel="stylesheet" href="~/Admin/css/owl.transitions.css">
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/animate.css">
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/normalize.css">
+    <!-- meanmenu icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/meanmenu.min.css">
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/main.css">
+    <!-- educate icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/educate-custon-icon.css">
+    <!-- morrisjs CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/morrisjs/morris.css">
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- metisMenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="~/Admin/css/metisMenu/metisMenu-vertical.css">
+    <!-- calendar CSS
+
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/style.css">
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Admin/css/responsive.css">
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="~/Admin/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Start Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="header-top-area" style="position:fixed; left:0; right:0; top:0;">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="header-top-wraper">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                            <div class="header-top-menu tabl-d-n">
+                                <ul class="nav navbar-nav mai-top-nav">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">ARIZALAR</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <div class="header-right-info">
+                                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                {
+                                    Html.RenderAction("AdminProfile", "Admin");
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="contacts-area mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                @foreach (var item in @Model)
+                {
+                    if (@user.Id == item.Id)
+                    {
+                        foreach (var item1 in troubleRecord)
+                        {
+                            if (item1.Id == item.Id2)
+                            {
+
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30" style="margin-bottom:10px;margin-top:10px;">
+                                        <div class="panel-body custom-panel-jw">
+                                            <img alt="logo" class="img-circle m-b" src="@item1.PhotoPath">
+                                            <h3><a href="">@item1.Types</a></h3>
+                                            <h3><a href="">@item1.BrandTypes</a></h3>
+                                            <p class="all-pro-ad">@item1.Message</p>
+
+                                            <div class="row">
+                                                <a href="@Url.Action("EditTechnicianTroubleWait","Technician",new{id=item.Id2})" type="button" style="margin-right:5px;font-size:15px;color:white;background-color:darkcyan;height:40px; width:100px;" class="btn btn-circle">Beklemede</a>
+                                                <a href="@Url.Action("EditTechnicianTroubleAtService","Technician",new{id=item.Id2})" type="button" style="margin-right:5px;font-size:15px;color:white;background-color:darkcyan;height:40px; width:80px;" class="btn btn-circle">Serviste</a>
+                                                <a href="@Url.Action("EditTechnicianTroubleDone","Technician",new{id=item.Id2})" type="button" style="margin-right:5px;font-size:15px;color:white;background-color:darkcyan;height:40px; width:80px;" class="btn btn-circle">Yapıldı</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer-copyright-area" style="position:fixed; left:0; right:0; bottom:0;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>Tüm hakları saklıdır. <a style="color:blue" href="@Url.Action("Index","Home")"> AB SERVICE</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery
+        ============================================ -->
+    <script src="~/Admin/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstra~/Admin/p JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/bootstrap.min.js"></script>
+    <!-- wow JS  ~/Admin/
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/wow.min.js"></script>
+    <!-- price-sl~/Admin/ider JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/jquery-price-slider.js"></script>
+    <!-- meanmenu~/Admin/ JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/jquery.meanmenu.js"></script>
+    <!-- owl.caro~/Admin/usel JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/owl.carousel.min.js"></script>
+    <!-- sticky J~/Admin/S
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/jquery.sticky.js"></script>
+    <!-- scrollUp~/Admin/ JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/jquery.scrollUp.min.js"></script>
+    <!-- mCustomS~/Admin/crollbar JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Admin/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <!-- metisMen~/Admin/u JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/metisMenu/metisMenu.min.js"></script>
+    <script src="~/Admin/js/metisMenu/metisMenu-active.js"></script>
+    <!-- morrisjs~/Admin/ JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Admin/js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="~/Admin/js/sparkline/sparkline-active.js"></script>
+    <!-- calendar~/Admin/ JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/calendar/moment.min.js"></script>
+    <script src="~/Admin/js/calendar/fullcalendar.min.js"></script>
+    <script src="~/Admin/js/calendar/fullcalendar-active.js"></script>
+    <!-- plugins ~/Admin/JS
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/plugins.js"></script>
+    <!-- main JS ~/Admin/
+        =========~/Admin/=================================== -->
+    <script src="~/Admin/js/main.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            var clicked = true;
+
+            var btn = $(".btn-circle");
+
+            btn.click(function () {
+
+                if (clicked) {
+
+                    $(this).css("background-color", "greenyellow");
+                    clicked = false;
+                } else {
+
+                    $(this).css("background-color", "darkcyan");
+                    clicked = true;
+
+                }
+            });
+
+        });
+
+
+    </script>
+</body>
+</html>

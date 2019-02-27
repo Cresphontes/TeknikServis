@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Web.BLL.Helpers;
 using Web.BLL.Repository;
 using Web.Models.Entities;
 using Web.Models.EntityIdentity;
@@ -21,7 +24,7 @@ namespace WebApplication1.Controllers
             {
                 User user = NewUserManager().FindById(id);
 
-                return PartialView("Partials/_PartialAdminProfile", user);
+                return PartialView("Partials/_PartialOperatorProfile", user);
             }
             else
             {
@@ -32,7 +35,84 @@ namespace WebApplication1.Controllers
 
                 };
 
-                return PartialView("Partials/_PartialAdminProfile", defaultUser);
+                return PartialView("Partials/_PartialOperatorProfile", defaultUser);
+            }
+        }
+        public ActionResult EditOperatorProfile(string id)
+        {
+            try
+            {
+                ViewBag.CountryList = CountryList();
+                ViewBag.RoleList = RoleList();
+
+                if (id == null)
+                {
+                    User user1 = new User()
+                    {
+                        Adress = "",
+                        BirthDate = DateTime.Now,
+                        City = "",
+                        Country = "",
+                        Email = "",
+                        Gender = "",
+                        Name = "",
+                        PhoneNumber = "",
+                        UserName = "",
+                        EmailConfirmed = false
+                    };
+
+                    var newUser1 = new AdminEditUserViewModel()
+                    {
+                        Adress = user1.Adress,
+                        BirthDate = user1.BirthDate.ToString("yyyy-MM-dd"),
+                        City = user1.City,
+                        Country = user1.Country,
+                        Email = user1.Email,
+                        Gender = user1.Gender,
+                        Name = user1.Name,
+                        Surname = user1.Surname,
+                        PhoneNumber = user1.PhoneNumber,
+                        Username = user1.UserName,
+                        EmailConfirmed = user1.EmailConfirmed,
+
+
+                    };
+
+                    return PartialView("Partials/_PartialEditOperatorProfile", newUser1);
+                }
+                var user = NewUserManager().FindById(id);
+
+                var newUser = new AdminEditUserViewModel()
+                {
+                    Adress = user.Adress,
+                    BirthDate = user.BirthDate.ToString("yyyy-MM-dd"),
+                    City = user.City,
+                    Country = user.Country,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    PhoneNumber = user.PhoneNumber,
+                    Username = user.UserName,
+                    EmailConfirmed = user.EmailConfirmed
+
+                };
+
+
+                return PartialView("Partials/_PartialEditOperatorProfile", newUser);
+            }
+            catch (Exception ex)
+            {
+
+                TempData["model"] = new ErrorViewModel()
+                {
+                    Text = "Bir Hata Oluştu",
+                    ActionName = "Users",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+
+                return RedirectToAction("Error", "Home");
             }
         }
         public ActionResult OperatorIndex()
@@ -66,7 +146,7 @@ namespace WebApplication1.Controllers
             {
 
                 ViewBag.UserList = UserList();
-             
+
 
                 var users = NewUserManager().Users.ToList();
                 ViewBag.Users = users;
@@ -83,7 +163,8 @@ namespace WebApplication1.Controllers
                         BrandTypes = troubleRecord1.BrandTypes,
                         PhotoPath = troubleRecord1.PhotoPath,
                         Message = troubleRecord1.Message,
-                        UserName = ""
+                        UserName = "",
+
 
                     };
 
@@ -100,7 +181,8 @@ namespace WebApplication1.Controllers
                     Types = troubleRecord.Types,
                     BrandTypes = troubleRecord.BrandTypes,
                     PhotoPath = troubleRecord.PhotoPath,
-                    Message = troubleRecord.Message
+                    Message = troubleRecord.Message,
+
 
                 };
 
@@ -156,7 +238,7 @@ namespace WebApplication1.Controllers
         public ActionResult EditTrouble(TroubleRecordViewModel model)
         {
             ViewBag.UserList = UserList();
-        
+
 
             if (model.PostedFile != null)
             {
@@ -188,9 +270,28 @@ namespace WebApplication1.Controllers
             troubleRecord.BrandTypes = model.BrandTypes;
             troubleRecord.Message = model.Message;
 
-            if (model.PhotoPath != "" && model.PostedFile != null)
+            if (model.PostedFile != null && model.PostedFile.ContentLength > 0)
             {
-                troubleRecord.PhotoPath = model.PhotoPath;
+
+                var file = model.PostedFile;
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string fileExt = Path.GetExtension(file.FileName);
+                fileName = StringHelpers.UrlFormatConverter(fileName);
+                fileName += StringHelpers.GetCode();
+                var klasorYolu = Server.MapPath("~/Upload/");
+                var dosyaYolu = Server.MapPath("~/Upload/") + fileName + fileExt;
+
+                if (!Directory.Exists(klasorYolu))
+                    Directory.CreateDirectory(klasorYolu);
+
+                file.SaveAs(dosyaYolu);
+
+                WebImage img = new WebImage(dosyaYolu);
+                img.Resize(500, 500, false);
+                img.Save(dosyaYolu);
+
+                troubleRecord.PhotoPath = "/Upload/" + fileName + fileExt;
+
             }
             else
             {
@@ -201,27 +302,33 @@ namespace WebApplication1.Controllers
 
             foreach (var item in userTroubleList)
             {
-                if (item.TroubleRecord.Id == model.Id)
+                foreach (var item0 in troubleRecords)
                 {
-                    foreach (var item1 in users)
+                    if (item.Id2 == item0.Id && item0.Id == model.Id)
                     {
-                        if (item.Id == item1.Id)
+                        foreach (var item1 in users)
                         {
-                            foreach (var item2 in item1.Roles)
+                            if (item.Id == item1.Id)
                             {
-                                foreach (var item3 in roles)
+                                foreach (var item2 in item1.Roles)
                                 {
-                                    if (item2.RoleId == item3.Id && item3.Name == "Technician")
+                                    foreach (var item3 in roles)
                                     {
-                                        dbUserTrouble.Delete(item);
+                                        if (item2.RoleId == item3.Id && item3.Name == "Technician")
+                                        {
+                                            dbUserTrouble.Delete(item);
+                                        }
                                     }
-                                }
 
+                                }
                             }
+
                         }
 
                     }
+
                 }
+
 
             }
 
@@ -270,7 +377,7 @@ namespace WebApplication1.Controllers
                     return View();
                 }
 
-                
+
             }
             catch (Exception ex)
             {

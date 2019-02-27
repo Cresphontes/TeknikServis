@@ -35,8 +35,13 @@ namespace Web.Models.Entities
         [Required]
         public string Message { get; set; }
 
-        
-       public virtual ICollection<UserTroubleRecord> UserTroubleRecords { get; set; } = new HashSet<UserTroubleRecord>();
+        public bool Wait { get; set; } = false;
+        public bool AtService { get; set; } = false;
+        public bool Done { get; set; } = false;
+
+
+
+        public virtual ICollection<UserTroubleRecord> UserTroubleRecords { get; set; } = new HashSet<UserTroubleRecord>();
 
     }
 }

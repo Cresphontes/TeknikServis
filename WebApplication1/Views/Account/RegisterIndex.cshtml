@@ -69,13 +69,13 @@
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Cinsiyet</label>
                             <div class="col-sm-9">
                                 <div class="row mt-1">
-                                    <div class="custom-control custom-radio col-md-1">
+                                    <div style="position: relative;left:15px" class="custom-control custom-radio col-md-1">
                                         <input value="Erkek" type="radio" class="custom-control-input" id="erkek" name="Gender" required>
-                                        <label style="padding-left:20px" class="custom-control-label" for="erkek">Erkek</label>
+                                        <label class="custom-control-label" for="erkek">Erkek</label>
                                     </div>
-                                    <div style="margin-left:15px" class="custom-control custom-radio col-md-1">
+                                    <div style="position: relative;left:50px" class="custom-control custom-radio col-md-1">
                                         <input value="Kadın" type="radio" class="custom-control-input" id="kadın" name="Gender" required>
-                                        <label style="padding-left:20px" class="custom-control-label" for="kadın">Kadın</label>
+                                        <label class="custom-control-label" for="kadın">Kadın</label>
                                     </div>
 
                                 </div>
@@ -91,7 +91,17 @@
                         <div class="form-group row">
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">City</label>
                             <div class="col-md-9">
-                                <select name="City" id="city" class="select2 form-control custom-select" style="width: 100%; height:36px;"></select>
+                                <select name="City" id="city" class="select2 form-control custom-select" style="width: 100%; height: 36px;">
+                                   @if (Model == null)
+                                   {
+                                       <option></option>
+                                   }
+                                   else
+                                   {
+                                       <option>@Model.City</option>
+                                   }
+                                   
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -176,6 +186,18 @@
 
 
         $(document).ready(function () {
+
+            if ("@Model.Gender" != "") {
+                if ("@Model.Gender" === "Erkek") {
+
+                    $("#erkek").attr("checked", "checked");
+                } else {
+
+                    $("#kadın").attr("checked", "checked");
+                }
+            } 
+
+           
 
             $("#country").change(function () {
 

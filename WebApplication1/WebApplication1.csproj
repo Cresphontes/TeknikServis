@@ -1861,6 +1861,10 @@
     <Content Include="Views\Shared\Partials\_PartialEditTrouble.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialAdminProfile.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialEditAdminProfile.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialEditOperatorProfile.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialOperatorProfile.cshtml" />
+    <Content Include="Views\Technician\TechnicianTrouble.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialProfile1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1872,7 +1876,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Technician\" />
     <Folder Include="Views\UserRegister\" />
   </ItemGroup>
   <ItemGroup>

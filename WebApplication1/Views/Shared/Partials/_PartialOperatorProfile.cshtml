@@ -1,0 +1,70 @@
+﻿
+
+@model Web.Models.IdentityEntities.User
+
+
+<div>
+    <div class="nav-item">
+        <a style="margin-left:45px" href="#" role="button">
+            <span style="color:wheat" class="admin-name">@Model.Name.ToUpper() @Model.Surname.ToUpper()</span>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <button style="position:relative;left:60px" name="@Model.Id" id="btn-edit1" class="btn btn-warning a-btn-slide-text">Edit</button>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <div class="modal fade" id="myModal1" role="dialog" data-url='@Url.Action("EditOperatorProfile", "Operator")'>
+            </div>
+        </div>
+        <div style="position:relative;right:30px" class="col-md-5">
+            <a class="btn btn-primary" href="@Url.Action("LogOut","Account")"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    $(".select2").select2();
+
+
+    $(function () {
+        $('.datepicker').datepicker({
+            startDate: '-3d'
+        });
+    });
+
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btn-edit1").click(function () {
+
+            var id = this.name;
+
+
+            var url = $("#myModal1").data("url");
+            url += "/" + id;
+
+            $.get(url,
+                function (data) {
+
+                    $("#myModal1").html(data);
+                    $("#myModal1").modal("show");
+                });
+        });
+
+    });
+
+</script>
+
+
+
+
+
+
+
+

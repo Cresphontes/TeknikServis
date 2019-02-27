@@ -1,24 +1,21 @@
-﻿@model Web.Models.IdentityEntities.User
+﻿@using Web.Models.IdentityEntities
+@model Web.Models.IdentityEntities.User
 
+<ul style="position: relative; left: 200px;top:18px">
+    <li class="nav-item">
+        <a >
+            <img src="img/product/pro4.jpg" alt="">
+            <span style="font-weight: bold;color:black;font-size:20px" class="admin-name">@Model.Name.ToUpper() @Model.Surname.ToUpper()</span>
+        </a>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="@Url.Action("MyProfile", "Profile")"class="btn btn-info ">Profilim</a> 
+            </div>
+            <div style="position:relative;right:25px" class="col-md-5">
+                <a class="btn btn-danger" href="@Url.Action("LogOut","Account")">Çıkış Yap</a>
+            </div>
 
-
-<ul style="margin-top: 20px">
-	<li class="nav-item">
-		<a style="margin-left:10px">
-			<img src="img/product/pro4.jpg" alt="">
-			<span style="color:black;font-size:20px" class="admin-name">@Model.Name.ToUpper() @Model.Surname.ToUpper()</span>
-		</a>
-		<div class="row">
-			<div class="col-md-6">
-				<button  name="@Model.Id" id="btn-edit1" class="btn btn-warning a-btn-slide-text">Profilim</button>
-				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				<div class="modal fade" id="myModal1" role="dialog" data-url='@Url.Action("EditAdminProfile", "Admin")'>
-				</div>
-			</div>
-			<div style="position:relative;right:30px" class="col-md-5">
-				<button class="btn btn-danger" href="@Url.Action("LogOut","Account")">Çıkış Yap</button>
-			</div>
-
-		</div>
-	</li>
+        </div>
+    </li>
 </ul>
+

@@ -1,0 +1,195 @@
+﻿
+
+@model Web.Models.ViewModels.AdminEditUserViewModel
+
+
+@using (Html.BeginForm("EditAdminProfile", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "form" }))
+{
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="margin-left: 170px">Kişisel Bilgiler</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5>@Html.ValidationSummary()</h5>
+                        <h5>@TempData["Message"]</h5>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Name, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Surname, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Email, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.PhoneNumber, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.BirthDate, new { @id = "date", @class = " datepicker col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", @type = "date", @id = "birth" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Cinsiyet</label>
+                        <div class="col-sm-9">
+                            <div class="row mt-1">
+                                <div style="margin-left:20px" class="custom-control custom-radio col-md-1">
+                                    <input value="Erkek" type="radio" class="custom-control-input " id="erkek" name="Gender" required>
+                                    <label class="custom-control-label " for="erkek">Erkek</label>
+                                </div>
+                                <div style="margin-left:50px" class="custom-control custom-radio col-md-1">
+                                    <input value="Kadın" type="radio" class="custom-control-input " id="kadın" name="Gender" required>
+                                    <label class="custom-control-label " for="kadın">Kadın</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Country, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(x => x.Country, (List<SelectListItem>)ViewBag.CountryList, new { @id = "country", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">City</label>
+                        <div class="col-md-9">
+                            <select name="City" id="city" class="select2 form-control custom-select" style="width: 100%; height: 36px;">
+                                <option>@Model.City</option>"
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Adress, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextAreaFor(x => x.Adress, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Username, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(x => x.Role, new { @class = "col-sm-3 text-right control-label col-form-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(x => x.Role, (List<SelectListItem>)ViewBag.RoleList, new { @id = "country", @class = "select2 form-control custom-select", @style = "width: 100%; height:36px;", size = "1" })
+                        </div>
+                    </div>
+                    @*<div class="form-group row">
+                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Aktif</label>
+                            <div class="col-sm-9">
+                                <div class="row mt-1">
+                                    <div style="margin-left: 20px" class="custom-control custom-checkbox col-md-1">
+                                        <input value="active" type="checkbox" class="custom-control-input " id="active" name="EmailConfirmed" required>
+                                        <label style="margin-bottom:14px" class="custom-control-label " for="active"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn primary" id="btnOk" onclick="">OK</button>
+                    <button class="btn btn default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+
+    $(document).ready(function () {
+
+
+        if ("@Model.Gender" === "Erkek") {
+
+            $("#erkek").attr("checked", "checked");
+        } else {
+
+            $("#kadın").attr("checked", "checked");
+        }
+
+        if (@Model.EmailConfirmed === true) {
+
+            $("#active").attr("checked", "checked");
+        }
+
+
+        $("#country").change(function () {
+
+            var a = $(this).val();
+
+            $("#city").empty();
+
+            if (a == "TR") {
+
+                var v;
+                v += "<option>Edirne</option>";
+                v += "<option>Kırklareli</option>";
+
+                $("#city").html(v);
+            } else if (a == "ALM") {
+                var v;
+                v += "<option>Munich</option>";
+                v += "<option>Berlin</option>";
+                $("#city").html(v);
+
+            } else if (a == "ING") {
+                var v;
+                v += "<option>Londra</option>";
+                v += "<option>Manchester</option>";
+                $("#city").html(v);
+
+            } else if (a == "ITL") {
+                var v;
+                v += "<option>Milano</option>";
+                v += "<option>Roma</option>";
+                $("#city").html(v);
+
+            } else if (a == "AB") {
+                var v;
+                v += "<option>Massachussetts</option>";
+                v += "<option>Nebraska</option>";
+                $("#city").html(v);
+
+            }
+        });
+
+
+
+    });
+
+
+</script>
+
+
+
+
+
+
+

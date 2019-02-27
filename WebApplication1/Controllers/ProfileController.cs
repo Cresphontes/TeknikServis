@@ -24,14 +24,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                User defaultUser = new User()
-                {
-                    Name = "",
-                    Surname = "",
-                     
-                };
-
-                return PartialView("Partials/_PartialProfile", defaultUser);
+                return PartialView("Partials/_PartialProfile1");
             }
         }
 

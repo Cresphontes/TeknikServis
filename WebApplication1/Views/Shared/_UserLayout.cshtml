@@ -1,7 +1,5 @@
-﻿
-@{
-	var user = ViewBag.User;
-}
+﻿@using Web.Models.IdentityEntities
+
 <!DOCTYPE html>
 
 <html>
@@ -33,7 +31,7 @@
 					<a href="index.html"><img style="width:100%;height:100px" src="~/assets/images/logo/favicon.png" alt="logo"></a>
 				</div>
 			</div>
-			<div class="col-lg-6">
+			<div style="position:relative; left:50px" class="col-lg-6">
 				<div class="custom-navbar">
 					<span></span>
 					<span></span>
@@ -61,18 +59,10 @@
 				</div>
 
 			</div>
-			<div id="giris-cikis" style="position:relative;left:200px;top:25px">
-				<div style="margin-right:30px" class="menu-btn">
-					<a href="@Url.Action("LoginIndex", "Account")" class="login">GIRIS</a>
-					<a href="@Url.Action("RegisterIndex", "Account")" class="template-btn">UYE OL</a>
-				</div>
-			</div>
+			
 
-			@if (HttpContext.Current.User.Identity.IsAuthenticated)
-			{
-				Html.RenderAction("ProfileIndex", "Profile");
-			}
-
+				@{ Html.RenderAction("ProfileIndex", "Profile");}
+			
 
 		</div>
 	</header>
@@ -97,14 +87,7 @@
 
 	@RenderSection("scripts", required: false)
 
-	<script>
-		if (@user == null) {
-			$("#giris-cikis").css("display", "none");
-		} else {
-			$("#giris-cikis").css("display", "block");
-		}
 
-	</script>
 
 
 </body>

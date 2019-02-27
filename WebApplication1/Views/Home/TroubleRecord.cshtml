@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="~/Admin1/assets/libs/select2/dist/css/select2.min.css">
     <link href="~/Admin1/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/bootstrap-4.1.3.min.css">
 
 
 }
@@ -26,45 +27,45 @@
 
 <div style="height:650px" class="container-fluid">
 
-    @using (Html.BeginForm("TroubleRecord", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data"}))
+    @using (Html.BeginForm("TroubleRecord", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         <div class="row">
-            <div class="col-md-6">
+            <div style="margin:auto" class="col-md-6">
                 <div style="border:none" class="card">
                     <div class="card-body">
                         <div class="row">
                             <h5 style="margin-left:305px;padding-bottom:20px">Arıza Talebi</h5>
-                            <h5 style="margin-left:305px;padding-bottom:20px">@Html.ValidationSummary()</h5>
-                            <h5 style="margin-left:305px;padding-bottom:20px">@TempData["Message"]</h5>
+                            <h5 style="margin-left:200px;padding-bottom:20px">@Html.ValidationSummary()</h5>
+                            <h5 style="margin-left:200px;padding-bottom:20px">@TempData["Message"]</h5>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(x => x.Types, new { @class = "col-sm-3 text-right control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.EnumDropDownListFor(x => x.Types,new { @class = "select2 form-control"})
+                                @Html.EnumDropDownListFor(x => x.Types, new { @class = "select2 form-control" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(x => x.BrandTypes, new { @class = "col-sm-3 text-right control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.EnumDropDownListFor(x => x.BrandTypes,new { @class = "select2 form-control"})
+                                @Html.EnumDropDownListFor(x => x.BrandTypes, new { @class = "select2 form-control" })
                             </div>
                         </div>
-                        <div class="form-group row">    
+                        <div class="form-group row">
                             @Html.LabelFor(x => x.PostedFile, new { @class = "col-sm-3 text-right control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextBoxFor(x => x.PostedFile, new { @class = "form-control", type = "file", multiple = false })
+                                @Html.TextBoxFor(x => x.PostedFile, new { @class = "form-control", type = "file", multiple = false,@style="height:50px" })
                             </div>
                         </div>
                         <div class="form-group row">
                             @Html.LabelFor(x => x.Message, new { @class = "col-sm-3 text-right control-label col-form-label" })
                             <div class="col-sm-9">
-                                @Html.TextAreaFor(x => x.Message, new { @class = "form-control" })
+                                @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @style = "height:100px" })
                             </div>
                         </div>
 
-                        
+
                         <div class="card-body">
-                            <button style="width:500px;margin-left:80px" type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                            <button style="width:500px;margin-left:100px" type="submit" class="btn btn-primary btn-block">Kaydet</button>
                         </div>
                     </div>
 
@@ -109,9 +110,9 @@
         $(".select2").select2();
 
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-            $("#country").change(function() {
+            $("#country").change(function () {
 
                 var a = $(this).val();
 
@@ -153,7 +154,7 @@
 
         });
 
-        $(function() {
+        $(function () {
             $('.datepicker').datepicker({
                 startDate: '-3d'
             });
