@@ -1,0 +1,22 @@
+﻿
+@using Web.Models.IdentityEntities
+@model Web.Models.IdentityEntities.User
+
+<ul style="position: relative; left: 300px;">
+	<li class="nav-item">
+		<a style="position:relative;left:125px">
+			<img src="img/product/pro4.jpg" alt="">
+			<span style="font-weight: bold;color:white;font-size:20px" class="admin-name">@Model.Name.ToUpper() @Model.Surname.ToUpper()</span>
+		</a>
+		<div class="row">
+			<div class="col-md-6">
+				<a style="position:relative;left:90px" href="@Url.Action("MyProfile", "Profile")" class="btn btn-info ">Profilim</a>
+			</div>
+			<div style="position:relative;right:95px" class="col-md-5">
+				<a class="btn btn-danger" href="@Url.Action("LogOut","Account")">Çıkış Yap</a>
+			</div>
+
+		</div>
+	</li>
+</ul>
+

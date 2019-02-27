@@ -279,6 +279,8 @@ namespace WebApplication1.Controllers
         public ActionResult EditModal(string id)
         {
 
+            var roles = NewRoleManager().Roles;
+
             try
             {
                 ViewBag.CountryList = CountryList();
@@ -300,6 +302,7 @@ namespace WebApplication1.Controllers
                         EmailConfirmed = false
                     };
 
+
                     var newUser1 = new AdminEditUserViewModel()
                     {
                         Adress = user1.Adress,
@@ -313,9 +316,18 @@ namespace WebApplication1.Controllers
                         PhoneNumber = user1.PhoneNumber,
                         Username = user1.UserName,
                         EmailConfirmed = user1.EmailConfirmed,
-                        
-
                     };
+
+                    foreach (var item in user1.Roles)
+                    {
+                        foreach (var item1 in roles)
+                        {
+                            if (item.RoleId == item1.Id)
+                            {
+                                newUser1.Role = item1.ToString();
+                            }
+                        }
+                    }
 
                     return PartialView("Partials/_PartialEditModal", newUser1);
                 }
@@ -336,6 +348,17 @@ namespace WebApplication1.Controllers
                     EmailConfirmed = user.EmailConfirmed
 
                 };
+
+                foreach (var item in user.Roles)
+                {
+                    foreach (var item1 in roles)
+                    {
+                        if (item.RoleId == item1.Id)
+                        {
+                            newUser.Role = item1.ToString();
+                        }
+                    }
+                }
 
 
                 return PartialView("Partials/_PartialEditModal", newUser);

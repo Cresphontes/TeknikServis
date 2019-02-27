@@ -1865,6 +1865,7 @@
     <Content Include="Views\Shared\Partials\_PartialOperatorProfile.cshtml" />
     <Content Include="Views\Technician\TechnicianTrouble.cshtml" />
     <Content Include="Views\Shared\Partials\_PartialProfile1.cshtml" />
+    <Content Include="Views\Shared\Partials\_PartialTechnicianProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

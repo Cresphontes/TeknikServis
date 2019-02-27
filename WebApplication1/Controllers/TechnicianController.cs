@@ -6,12 +6,35 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Web.BLL.Repository;
 using Web.Models.EntityIdentity;
+using Web.Models.IdentityEntities;
 using static Web.BLL.Identity.MemberShipTools;
 
 namespace WebApplication1.Controllers
 {
     public class TechnicianController : Controller
     {
+        public ActionResult TechnicianProfile()
+        {
+
+            var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
+            if (id != null)
+            {
+                User user = NewUserManager().FindById(id);
+
+                return PartialView("Partials/_PartialTechnicianProfile", user);
+            }
+            else
+            {
+                User defaultUser = new User()
+                {
+                    Name = "",
+                    Surname = "",
+
+                };
+
+                return PartialView("Partials/_PartialTechnicianProfile", defaultUser);
+            }
+        }
         [Authorize(Roles = "Technician")]
         public ActionResult TechnicianTrouble()
         {
