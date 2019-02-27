@@ -27,12 +27,12 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-
+        
         public ActionResult Error()
         {
             return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpGet]
         public ActionResult TroubleRecord(string type)
         {
@@ -73,7 +73,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-
+        [Authorize(Roles = "User")]
         [HttpPost]
         public ActionResult TroubleRecord(TroubleRecordViewModel model)
         {
@@ -148,11 +148,5 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Contact()
-        {
-
-            return View();
-        }
     }
 }

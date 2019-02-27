@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class TechnicianController : Controller
     {
-  
+        [Authorize(Roles = "Technician")]
         public ActionResult TechnicianTrouble()
         {
 
@@ -32,6 +32,7 @@ namespace WebApplication1.Controllers
 
             return View(userTrouble);
         }
+        [Authorize(Roles = "Technician")]
         public ActionResult EditTechnicianTroubleWait(int id)
         {
             var db = new TroubleRecordRepo();
@@ -66,6 +67,7 @@ namespace WebApplication1.Controllers
 
             return View("TechnicianTrouble", userTrouble);
         }
+        [Authorize(Roles = "Technician")]
         public ActionResult EditTechnicianTroubleAtService(int id)
         {
             var db = new TroubleRecordRepo();
@@ -101,6 +103,7 @@ namespace WebApplication1.Controllers
 
             return View("TechnicianTrouble", userTrouble);
         }
+        [Authorize(Roles = "Technician")]
         public ActionResult EditTechnicianTroubleDone(int id)
         {
 

@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
                 return PartialView("Partials/_PartialProfile1");
             }
         }
-
+        
         public ActionResult MyProfile()
         {
             var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();

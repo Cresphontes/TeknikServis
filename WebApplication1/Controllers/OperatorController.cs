@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
 {
     public class OperatorController : BaseController
     {
+       
         public ActionResult OperatorProfile()
         {
             var id = HttpContext.GetOwinContext().Authentication.User.Identity.GetUserId();
@@ -38,6 +39,7 @@ namespace WebApplication1.Controllers
                 return PartialView("Partials/_PartialOperatorProfile", defaultUser);
             }
         }
+        [Authorize(Roles = "Operator")]
         public ActionResult EditOperatorProfile(string id)
         {
             try
@@ -115,6 +117,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+        [Authorize(Roles = "Operator")]
         public ActionResult OperatorIndex()
         {
 
@@ -138,7 +141,7 @@ namespace WebApplication1.Controllers
 
 
         }
-
+        [Authorize(Roles = "Operator")]
         [HttpGet]
         public ActionResult EditTrouble(int? id)
         {
@@ -233,7 +236,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
-
+        [Authorize(Roles = "Operator")]
         [HttpPost]
         public ActionResult EditTrouble(TroubleRecordViewModel model)
         {
@@ -345,7 +348,7 @@ namespace WebApplication1.Controllers
 
         }
 
-
+        [Authorize(Roles = "Operator")]
         [HttpGet]
         public ActionResult DeleteTroubles(int? id)
         {

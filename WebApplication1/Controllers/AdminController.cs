@@ -41,6 +41,7 @@ namespace WebApplication1.Controllers
                 return PartialView("Partials/_PartialAdminProfile", defaultUser);
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditAdminProfile(string id)
         {
             try
@@ -118,7 +119,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
-
+        [Authorize(Roles="Admin")]
         [HttpGet]
         public ActionResult Users()
         {
@@ -159,7 +160,7 @@ namespace WebApplication1.Controllers
 
            
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> EditModal(AdminEditUserViewModel model)
         {
@@ -234,7 +235,7 @@ namespace WebApplication1.Controllers
 
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult DeleteUsers(string id)
         {
@@ -273,7 +274,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult EditModal(string id)
         {
